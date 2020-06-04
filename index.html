@@ -1,0 +1,863 @@
+<!DOCTYPE html><html><head>
+      <title>instructions</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////Users/coltor/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.5.10/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      pre{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;padding:1em;margin:.5em 0;overflow:auto;line-height:1.5;tab-size:4;hyphens:none;color:#383a42;background-color:#eaeaeb !important;border:#d1d1d2;border-radius:3px}pre[class*="language-"]{padding:1em}code[class*="language-"] .token.comment,pre[class*="language-"] .token.comment,code[class*="language-"] .token.prolog,pre[class*="language-"] .token.prolog,code[class*="language-"] .token.doctype,pre[class*="language-"] .token.doctype,code[class*="language-"] .token.cdata,pre[class*="language-"] .token.cdata{color:#a0a1a7}code[class*="language-"] .namespace,pre[class*="language-"] .namespace{opacity:.7}code[class*="language-"] .token.constant,pre[class*="language-"] .token.constant{color:#986801}code[class*="language-"] .token.boolean,pre[class*="language-"] .token.boolean,code[class*="language-"] .token.number,pre[class*="language-"] .token.number,code[class*="language-"] .token.function-name,pre[class*="language-"] .token.function-name{color:#986801}code[class*="language-"] .token.tag,pre[class*="language-"] .token.tag{color:#e45649}code[class*="language-"] .token.symbol,pre[class*="language-"] .token.symbol{color:#0184bc}code[class*="language-"] .token.selector,pre[class*="language-"] .token.selector{color:#a626a4}code[class*="language-"] .token.attr-name,pre[class*="language-"] .token.attr-name{color:#986801}code[class*="language-"] .token.string,pre[class*="language-"] .token.string{color:#50a14f}code[class*="language-"] .token.char,pre[class*="language-"] .token.char{color:#0184bc}code[class*="language-"] .token.url,pre[class*="language-"] .token.url{color:#0184bc}code[class*="language-"] .token.operator,pre[class*="language-"] .token.operator{color:#383a42}code[class*="language-"] .token.atrule,pre[class*="language-"] .token.atrule,code[class*="language-"] .token.attr-value,pre[class*="language-"] .token.attr-value,code[class*="language-"] .token.keyword,pre[class*="language-"] .token.keyword{color:#a626a4}code[class*="language-"] .token.function,pre[class*="language-"] .token.function{color:#4078f2}code[class*="language-"] .token.class-name,pre[class*="language-"] .token.class-name{color:#c18401}code[class*="language-"] .token.variable,pre[class*="language-"] .token.variable{color:#986801}code[class*="language-"] .token.regex,pre[class*="language-"] .token.regex{color:#0184bc}code[class*="language-"] .token.important,pre[class*="language-"] .token.important{color:#e45649}code[class*="language-"] .token.important,pre[class*="language-"] .token.important,code[class*="language-"] .token.bold,pre[class*="language-"] .token.bold{font-weight:bold}code[class*="language-"] .token.italic,pre[class*="language-"] .token.italic{font-style:italic}code[class*="language-"] .token.entity,pre[class*="language-"] .token.entity{cursor:help}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:rgba(153,122,102,0.08);background:linear-gradient(to right, rgba(153,122,102,0.1) 70%, rgba(153,122,102,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:rgba(153,122,102,0.4);color:#f5f2f0;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px white}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#383a42;background-color:#fafafa;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5e616e}html body strong{color:#000}html body del{color:#5e616e}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#0184bc;text-decoration:none}html body a:hover{color:#01a0e5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5e616e;border-left:4px solid #d1d1d2}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d1d1d2;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d1d1d2;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#eaeaeb;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d1d1d2;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d1d1d2;border-bottom:2px solid #c1c1c2;padding:2px 4px;background-color:#eaeaeb;border-radius:3px}@media print{html body{background-color:#fafafa}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5e616e}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="squidstat-api-users-guide">Squidstat API User&#x2019;s Guide</h1>
+
+<ul>
+<li><a href="#squidstat-api-users-guide">Squidstat API User&#x2019;s Guide</a>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#class-definition-aissquidstatstarter">Class Definition: AisSquidstatStarter</a>
+<ul>
+<li><a href="#aissquidstatstarter-member-functions">AisSquidstatStarter Member Functions</a>
+<ul>
+<li><a href="#registerstart">registerStart</a></li>
+<li><a href="#init-app">init app</a></li>
+<li><a href="#startapp">startApp</a></li>
+<li><a href="#execapp">execApp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#class-definition-aissquidstat">Class Definition: AisSquidstat</a>
+<ul>
+<li><a href="#aissquidstat-member-functions">AisSquidstat Member Functions</a>
+<ul>
+<li><a href="#getinstance">getInstance</a></li>
+<li><a href="#connectnewdeviceat">connectNewDeviceAt</a></li>
+<li><a href="#loadbuilderelements">LoadBuilderElements</a></li>
+<li><a href="#updatecustomexperimentlist">UpdateCustomExperimentList</a></li>
+<li><a href="#getconnecteddevices">getConnectedDevices</a></li>
+<li><a href="#getcustomexperiments">getCustomExperiments</a></li>
+<li><a href="#getdeviceinformation">getDeviceInformation</a></li>
+<li><a href="#getchannelinformation">getChannelInformation</a></li>
+<li><a href="#setirdropcompensation">setIRDropCompensation</a></li>
+<li><a href="#getirdropcompensation">getIRDropCompensation</a></li>
+<li><a href="#setstabilityrange">setStabilityRange</a></li>
+<li><a href="#getstabilityrangelist">getStabilityRangeList</a></li>
+<li><a href="#getcurrentstabilityrange">getCurrentStabilityRange</a></li>
+<li><a href="#startexperiment">startExperiment</a></li>
+<li><a href="#stopexperiment">stopExperiment</a></li>
+<li><a href="#setappdocumentdir">setAppDocumentDir</a></li>
+<li><a href="#registerglobalnotifier">registerGlobalNotifier</a></li>
+<li><a href="#closeapplication">closeApplication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#class-definition-aisdevicesetting">Class Definition: AisDeviceSetting</a></li>
+<li><a href="#class-definition-aissquidstatnotifier">Class Definition: AisSquidstatNotifier</a></li>
+<li><a href="#class-definition-aisexperimentinfo">Class Definition: AisExperimentInfo</a></li>
+<li><a href="#class-definition-aisdatastore">Class Definition: AisDataStore</a></li>
+<li><a href="#class-definition-aisdeviceinfo">Class definition: AisDeviceInfo</a></li>
+<li><a href="#class-definition-aischannelinfo">Class Definition: AisChannelInfo</a></li>
+</ul>
+</li>
+</ul>
+<h2 class="mume-header" id="introduction">Introduction</h2>
+
+<p>The Squidstat API has two primary classes with which users can interact, and several helper classes that set and get
+information from the primary classes.All of the classes have the prefix &#x201C;Ais,&#x201D; for &#x201C;Admiral Instruments&#x201D; Inside each
+class, not every public member is available to users, but only those with the macro <code>SQUIDSTAT_DLL_SHARED_EXPORT</code> in the signature.</p>
+<p>The two primary classes are:</p>
+<ul>
+<li><strong>AisSquidstatStarter</strong>
+<ul>
+<li>used to initiate the application loop that interacts with the
+instrumentation and deals with event handling and data transfer.</li>
+</ul>
+</li>
+<li><strong>AisSquidstat</strong>
+<ul>
+<li>used to interact with the application loop.</li>
+</ul>
+</li>
+</ul>
+<p>The helper classes as well as a brief description are as follows:</p>
+<ul>
+<li><strong>AisDeviceSetting</strong>
+<ul>
+<li>a small class used to store the instrument serial name and channel number associated with an
+experiment.</li>
+</ul>
+</li>
+<li><strong>AisSquidstatNotifier</strong>
+<ul>
+<li>An abstract class whose pure virtual functions are used as callback functions for when
+important events happen during an experiment. The user must create a derived class and
+implement the virtual functions in order to have their callbacks fired when data arrives or
+when the experiment pauses, resumes, or stops.</li>
+</ul>
+</li>
+<li><strong>AisExperimentInfo</strong>
+<ul>
+<li>Holds pointers to an <strong>AisDeviceSetting</strong> object and an <strong>AisSquidstatNotifier</strong> object in
+order to pass them to the member function <strong>AisSquidstat</strong>::startExperiment().
+It also holds the container for the experimental data.</li>
+</ul>
+</li>
+<li><strong>AisDataStore</strong>
+<ul>
+<li>Objects each hold one column&#x2019;s worth of data (data from a single experimental variable, e.g.
+current, voltage, timestamp, etc.). Several AisDataStore objects comprise a container for a
+given experiment, stored inside <strong>AisExerimentInfo</strong>.</li>
+</ul>
+</li>
+<li><strong>AisDeviceInfo</strong>
+<ul>
+<li>An object that holds information about the firmware version and number of channels of a
+given device.</li>
+</ul>
+</li>
+<li><strong>AisChannelInfo</strong>
+<ul>
+<li>An object that in future API updates will contain information about the channel status.</li>
+</ul>
+</li>
+</ul>
+<p>In order to use the Squidstat API, the user will need to include the following header files:</p>
+<ul>
+<li>AisSquidstat.h</li>
+<li>DataLabels.h</li>
+</ul>
+<h2 class="mume-header" id="class-definition-aissquidstatstarter">Class Definition: AisSquidstatStarter</h2>
+
+<p>Defined in <strong>AisSquidstatStarter.h</strong>.</p>
+<p>Public member functions:</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token function">AisSquidstatStarter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">~</span><span class="token function">AisSquidstatStarter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">registerStart</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span> func<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">initApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">startApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">execApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p><strong>AisSquidstatStarter</strong> initializes all of the Squidstat API background processes and starts the
+application loop that polls for events, such as data and notifications that arrive from the
+hardware. The important member functions (for users <strong>not</strong> using the QtCoreApplication class to
+build their application) are initApp() and execApp(). For those users who use the QtCoreApplication
+class, the startApp() function will suffice.</p>
+<p>The <strong>AisSquidstatStarter</strong> class also provides the ability to register a callback app with the
+registerStart() function, which allows multi-threaded applications to coordinate asynchronously with
+the return of the initApp() function, which takes a few seconds to execute.</p>
+<h3 class="mume-header" id="aissquidstatstarter-member-functions">AisSquidstatStarter Member Functions</h3>
+
+<h4 class="mume-header" id="registerstart">registerStart</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token keyword">void</span> <span class="token function">registerStart</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span> func<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; Function Pointer with void return type and no arguments</td>
+<td>&#x2022; Nothing</td>
+</tr>
+</tbody>
+</table>
+<p>The function initApp() takes a one or two seconds to execute. The function registerStart() can be used to register a callback function that executes at the very end of initApp(). This can be useful in multi- threaded applications where the user does not want to wait for initApp() to return before starting other processes.</p>
+<h4 class="mume-header" id="init-app">init app</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token keyword">void</span> <span class="token function">initApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; None</td>
+<td>&#x2022; Void</td>
+</tr>
+</tbody>
+</table>
+<p>This function initializes important background processes that interact with the hardware. It is
+important to note that initApp() and execApp() must be called on the same thread. This function must
+be called before calling the static member function AisSquidstat::getInstance(), or else
+getInstance() will return a null pointer.</p>
+<h4 class="mume-header" id="startapp">startApp</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token keyword">void</span> <span class="token function">startApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; None</td>
+<td>&#x2022; Void</td>
+</tr>
+</tbody>
+</table>
+<p>This function is for Qt application development only, and it should be called instead of initApp()
+and execApp(). In a Qt application, the user would first create a QtCoreApplication object and then
+call its exec() member function. In a non-Qt project, initApp() and execApp() accomplish these two
+tasks.</p>
+<h4 class="mume-header" id="execapp">execApp</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token keyword">void</span> <span class="token function">execApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; None</td>
+<td>&#x2022; Void</td>
+</tr>
+</tbody>
+</table>
+<p>This function starts the control loop that polls for events related to Squidstat hardware activity.
+It will handle all of the background processes that communicate with the instruments, and it also
+fires the callbacks in <strong>AisSquidstatNotifier</strong>. This function will not return until
+<strong>AisSquidstat::closeApplication()</strong> is called.</p>
+<h2 class="mume-header" id="class-definition-aissquidstat">Class Definition: AisSquidstat</h2>
+
+<p>Defined in <strong>AisSquidstat.h</strong>.</p>
+<p>Public member functions:</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token operator">~</span><span class="token function">AisSquidstat</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">static</span> AisSquidstat<span class="token operator">*</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> mainWindow <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">connectNewDeviceAt</span><span class="token punctuation">(</span>QString comPortName <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">LoadBuilderElements</span><span class="token punctuation">(</span>QString dllFilePath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">UpdateCustomExperimentList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisStatus<span class="token operator">::</span>FLAG <span class="token function">getConnectedDevices</span><span class="token punctuation">(</span>QStringList<span class="token operator">&amp;</span> connectedDevices<span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisStatus<span class="token operator">::</span>FLAG <span class="token function">getCustomExperiments</span><span class="token punctuation">(</span>QStringList<span class="token operator">&amp;</span> customExperiments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisStatus<span class="token operator">::</span>FLAG <span class="token function">getDeviceInformation</span><span class="token punctuation">(</span>AisDeviceInfo<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisStatus<span class="token operator">::</span>FLAG <span class="token function">getChannelInformation</span><span class="token punctuation">(</span>AisChannelInfo<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisStatus<span class="token operator">::</span>FLAG <span class="token function">setIRDropCompensation</span><span class="token punctuation">(</span>AisDeviceSetting<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">,</span> <span class="token keyword">double</span> UnCompenstatedResistance<span class="token punctuation">,</span> <span class="token keyword">double</span> CompensatationLevel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisStatus<span class="token operator">::</span>FLAG <span class="token function">getIRDropCompensation</span><span class="token punctuation">(</span>AisDeviceSetting<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">,</span> <span class="token keyword">double</span> <span class="token operator">&amp;</span>UnCompenstatedResistance<span class="token punctuation">,</span> <span class="token keyword">double</span> <span class="token operator">&amp;</span>CompensatationLevel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisStatus<span class="token operator">::</span>FLAG <span class="token function">setStabilityRange</span><span class="token punctuation">(</span>AisDeviceSetting<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">,</span> QString rangeName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisStatus<span class="token operator">::</span>FLAG <span class="token function">getStabilityRangeList</span><span class="token punctuation">(</span>AisDeviceSetting<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">,</span> QStringList<span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisStatus<span class="token operator">::</span>FLAG <span class="token function">getCurrentStabilityRange</span><span class="token punctuation">(</span>AisDeviceSetting<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">,</span> QString tRangeRange<span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisStatus<span class="token operator">::</span>FLAG <span class="token function">startExperiment</span><span class="token punctuation">(</span>AisExperimentInfo<span class="token operator">*</span> experiment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisStatus<span class="token operator">::</span>FLAG <span class="token function">stopExperiment</span><span class="token punctuation">(</span><span class="token keyword">const</span> QUuid id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisStatus<span class="token operator">::</span>FLAG <span class="token function">setAppDocumentDir</span><span class="token punctuation">(</span>QString documentDir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisStatus<span class="token operator">::</span>FLAG <span class="token function">registerGlobalNotifier</span><span class="token punctuation">(</span>AisSquidstatNotifier<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">closeApplication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>The <strong>AisSquidstat</strong> class is the primary way that users will control the connected devices. From
+this class users can send commands to individual instruments, such as starting and stopping
+experiments. There should only be one <strong>AisSquidstat</strong> object running in a given application, and it
+is acquired using the static getInstance() function, and not through a constructor.</p>
+<h3 class="mume-header" id="aissquidstat-member-functions">AisSquidstat Member Functions</h3>
+
+<h4 class="mume-header" id="getinstance">getInstance</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token keyword">static</span> AisSquidstat<span class="token operator">*</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> mainWindow <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; Note that a nullptr is provided as the default argument; the user should never provide any arguments to this function.</td>
+<td>&#x2022; A pointer to the AisSquidstat object that is running all of the background processes.</td>
+</tr>
+</tbody>
+</table>
+<p>Note that this is a static member function. It provides a pointer to the object created by
+<strong>AisSquidstatStarter::initApp()</strong>. This pointer gives access to the user to control connected
+instruments.</p>
+<h4 class="mume-header" id="connectnewdeviceat">connectNewDeviceAt</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token keyword">void</span> <span class="token function">connectNewDeviceAt</span><span class="token punctuation">(</span>QString comPortName <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; A QString indicating the COM port at which to search for a device. If no COM port is specified, then the software will search all available COM ports for Squidstat devices.</td>
+<td>&#x2022; Void</td>
+</tr>
+</tbody>
+</table>
+<p>This function initiates the search for Squidstat devices. The user can optionally specify a COM port
+at which to search. If this argument is omitted, then the software will poll all available COM
+ports. Any non-Squidstat devices at available COM ports will receive a &#x201C;ping,&#x201D; and the software will
+wait until a response has timed out before continuing on to the next device on the list. Whenever a
+Squidstat device is found, calibration data will automatically be downloaded if necessary, and the
+<strong>AisSquidstatNotifier::instrumentReadyToUse()</strong> callback will be fired.</p>
+<h4 class="mume-header" id="loadbuilderelements">LoadBuilderElements</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token keyword">void</span> <span class="token function">LoadBuilderElements</span><span class="token punctuation">(</span>QString dllFilePath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; dllFilePath, a QString object that represents the directory path to where the Squidstat experiment &#x201C;tile&#x201D; library files are stored.</td>
+<td>&#x2022; Void</td>
+</tr>
+</tbody>
+</table>
+<p>Here the user must provide a directory path to where they have stored the library files
+corresponding to the Squidstat User Interface&#x2019;s &#x201C;Experiment Builder tiles.&#x201D; These library files are
+installed during a normal installation of the Squidstat User Interface in &#x201C;<installation path>/Admiral Instruments/Squidstat/elements&#x201D;. However, a set of library files for both debug and
+release builds are also provided in the Squidstat API package. The path string should not terminate
+with a &#x201C;/&#x201D;. The argument is a QString object, which is the Qt library version of std::string. The
+directory path can be provided directly in the argument, like so:</installation></p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token keyword">auto</span> app_handler <span class="token operator">=</span> AisSquidstat<span class="token operator">::</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app_handler<span class="token operator">-&gt;</span><span class="token function">LoadBuilderElements</span><span class="token punctuation">(</span>
+    &#x201C;C<span class="token operator">:</span><span class="token operator">/</span>SquidstatAPI files<span class="token operator">/</span>SquidstatDLL<span class="token operator">/</span>Debug<span class="token operator">/</span>element&#x201D;<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><h4 class="mume-header" id="updatecustomexperimentlist">UpdateCustomExperimentList</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token keyword">void</span> <span class="token function">UpdateCustomExperimentList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; None</td>
+<td>&#x2022; Void</td>
+</tr>
+</tbody>
+</table>
+<p>This function is useful for users who want to add or edit custom experiment files on-the-fly. Each
+custom experiment is stored as a JSON file, the text of which can be read and modified outside of
+the Squidstat User Interface Experiment Builder. However, the JSON files are parsed when
+<strong>AisSquidstatStarter::initApp()</strong> is called. In order to refresh the list for new or modified
+files, UpdateCustomExperimentList() must be called. Note that for existing JSON files that are
+modified and not renamed, the API will not recognize any changes to the file unless the UUID field
+inside the file is changed. Users can generate a new UUID using the class QUuid, which is included
+in the Squidstat API. For more information on the QUuid class, see
+<a href="https://doc.qt.io/qt-5/quuid.html">https://doc.qt.io/qt-5/quuid.html</a>.</p>
+<h4 class="mume-header" id="getconnecteddevices">getConnectedDevices</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisStatus<span class="token operator">::</span>FLAG <span class="token function">getConnectedDevices</span><span class="token punctuation">(</span>QStringList<span class="token operator">&amp;</span> connectedDevices<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; connectedDevices, a QStringList object that is passed by reference. It should be empty upon entering the function, and filled at return.</td>
+<td>&#x2022; AisStatus::NO_ERROR</td>
+</tr>
+</tbody>
+</table>
+<p>This function provides a list of serial numbers/device names of the Squidstat devices connected to
+the software. Note that the API can only interact with and open connections that are closed when
+AisSquidstatStarter::initApp() is called, and so open instances of the Squidstat User Interface or
+other programs running the Squidstat API will interfere with device connectivity. The Squidstat API
+searches for newly connected devices only when the <strong>AisSquidstat::connectNewDeviceAt()</strong> function
+is called. For more information about the QStringList class, see
+<a href="https://doc.qt.io/qt-5/qstringlist.html">https://doc.qt.io/qt-5/qstringlist.html</a>.</p>
+<h4 class="mume-header" id="getcustomexperiments">getCustomExperiments</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisStatus<span class="token operator">::</span>FLAG <span class="token function">getCustomExperiments</span><span class="token punctuation">(</span>QStringList<span class="token operator">&amp;</span> customExperiments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; customExperiments, a QStringList object that is passed by reference. It should be empty upon entering the function, and filled at return.</td>
+<td>&#x2022; AisStatus::NO_ERROR</td>
+</tr>
+</tbody>
+</table>
+<p>This function provides a list of names of custom experiments that have been built and saved using
+the Squidstat User Interface Experiment Builder tab. These experiments are saved in &#x201C;<documents path>/Admiral Instruments/Custom Experiments&#x201D;.</documents></p>
+<h4 class="mume-header" id="getdeviceinformation">getDeviceInformation</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisStatus<span class="token operator">::</span>FLAG <span class="token function">getDeviceInformation</span><span class="token punctuation">(</span>AisDeviceInfo<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; A pointer to an AisDeviceInfo object. The object should have the device name set to the device in question before calling getDeviceInformation. Upon return, the user can check the specified device&#x2019;s firmware version and the number of channels.</td>
+<td>&#x2022; AisStatus::NO_ERROR if the specified device is found. <br> &#x2022; AisStatus::HANDLER_NOT_FOUND if the specified device is not connected.</td>
+</tr>
+</tbody>
+</table>
+<p>This function allow the user to check the firmware version and the number of channels a given device
+has. The user creates an <strong>AisDeviceInfo</strong> object, specifying the device name/serial number in the
+constructor. Then the user passes the pointer to that object to getDeviceInformation(). Upon return,
+the user can call the <strong>AisDeviceInfo</strong> object&#x2019;s getFirmware() and getNumberOfChannels() member
+functions.</p>
+<h4 class="mume-header" id="getchannelinformation">getChannelInformation</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisStatus<span class="token operator">::</span>FLAG <span class="token function">getChannelInformation</span><span class="token punctuation">(</span>AisChannelInfo<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; A pointer to an AisChannelInfo object. The object should have the device name and channel number before calling getChannelInformation.</td>
+<td>&#x2022; AisStatus::NO_ERROR if the specified device is found. <br> &#x2022; AisStatus::HANDLER_NOT_FOUND if the specified device is not connected. <br> &#x2022; AisStatus::INVALID_CHANNEL if the specified channel falls outside the valid range for the instrument.</td>
+</tr>
+</tbody>
+</table>
+<p>In this release of the Squidstat API, the <strong>AisChannelInfo</strong> object is not yet useful to the user. In
+future versions users will be able to specify the desired instrument and channel and get information
+on the channel&#x2019;s status using this function, e.g. whether the instrument is idle, paused, or running
+an experiment.</p>
+<h4 class="mume-header" id="setirdropcompensation">setIRDropCompensation</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisStatus<span class="token operator">::</span>FLAG <span class="token function">setIRDropCompensation</span><span class="token punctuation">(</span>AisDeviceSetting<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">,</span>
+<span class="token keyword">double</span> UnCompensatedResistance<span class="token punctuation">,</span> <span class="token keyword">double</span> CompensationLevel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; A pointer to an AisDeviceSetting object, indicating the device name and channel number. <br> &#x2022; UncompensatedResistance, a double, containing the uncompensated resistance (in Ohms) the user wishes to set. <br>  &#x2022; CompensationLevel, a double, containing the compensation level (between 0 and 100, in percent) that the instrument should use.</td>
+<td>&#x2022; AisStatus::NO_ERROR if the specified device is found. <br> &#x2022; AisStatus::HANDLER_NOT_FOUND if the specified device is not connected. <br> &#x2022; AisStatus::INVALID_CHANNEL if the specified channel falls outside the valid range for the instrument.</td>
+</tr>
+</tbody>
+</table>
+<p>This function allows the user to set the IR drop compensation settings, as one would in the
+Squidstat User Interface menu. The user selects the desired instrument and channel by creating an
+<strong>AisDeviceSetting</strong> object and passing it to this function. The user also provides the two parameters
+(doubles) specifying the uncompensated resistance and compensation level. For more information on IR
+drop compensation and compensation settings, see the Squidstat User Interface manual.</p>
+<h4 class="mume-header" id="getirdropcompensation">getIRDropCompensation</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisStatus<span class="token operator">::</span>FLAG <span class="token function">getIRDropCompensation</span><span class="token punctuation">(</span>AisDeviceSetting<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">,</span>
+<span class="token keyword">double</span> <span class="token operator">&amp;</span>UncompensatedResistance<span class="token punctuation">,</span> <span class="token keyword">double</span> <span class="token operator">&amp;</span>CompensationLevel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; A pointer to an AisDeviceSetting object, indicating the device name and channel number. <br> &#x2022; UncompensatedResistance, a double, passed by reference. Upon return, it contains the uncompensated resistance (in Ohms) that the channel is using. <br> &#x2022; CompensationLevel, a double, passed by reference. Upon return, it contains the compensation level (between 0 and 100 in percent) that the channel is using.</td>
+<td>&#x2022; AisStatus::NO_ERROR if the specified device is found. <br> &#x2022; AisStatus::HANDLER_NOT_FOUND if the specified device is not connected. <br> &#x2022; AisStatus::INVALID_CHANNEL if the specified channel falls outside the valid range for the instrument.</td>
+</tr>
+</tbody>
+</table>
+<p>This function allows the user to read out the previously set IR drop compensation parameters. See
+&#x201C;setIRDropCompensation&#x201D; and the Squidstat User Interface manual for more information.</p>
+<h4 class="mume-header" id="setstabilityrange">setStabilityRange</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisStatus<span class="token operator">::</span>FLAG <span class="token function">setStabilityRange</span><span class="token punctuation">(</span>AisDeviceSetting<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">,</span> QString rangeName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; A pointer to an AisDeviceSetting object, indicating the device name and channel number. <br> &#x2022; rangeName, a QString indicating the selected stability range</td>
+<td>&#x2022; AisStatus::NO_ERROR if selection is successful. <br> &#x2022; AisStatus::HANDLER_NOT_FOUND if the specified device is not connected. <br> &#x2022; AisStatus::INVALID_CHANNEL if the specified channel falls outside the valid range for the instrument. <br> &#x2022; AisStatus::INCOMPATIBLE_MODEL if the designated device does not have stability range settings. <br> &#x2022; AisStatus::INVALID_STABILITY_RANGE if the indicated range does not exist for the specified model.</td>
+</tr>
+</tbody>
+</table>
+<p>This function allows the user to set the stability range settings for a channel on a device. The
+name of the range must be specified by a QString passed to the function. The names of these strings
+can be copied from the latest version of the Squidstat User Interface under More Options.
+Alternatively, a list of range names valid for the given hardware model can be acquired using
+getStabilityRangeList().</p>
+<p>It is highly recommended to call setStabilityRange() before starting an
+experiment. The hardware default stability range at power-up is usually not preferable. See the
+default selection used in the Squidstat User Interface for a given model. For example, for the more
+recent models of the Squidstat Plus, the preferred range is named &#x201C;Capacitive loading (current &lt;=
+1mA)&#x201D;.</p>
+<p>For more information on stability ranges, see the Squidstat User Interface manual.</p>
+<h4 class="mume-header" id="getstabilityrangelist">getStabilityRangeList</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisStatus<span class="token operator">::</span>FLAG <span class="token function">getStabilityRangeList</span><span class="token punctuation">(</span>AisDeviceSetting<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">,</span> QStringList<span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; A pointer to an AisDeviceSetting object, indicating the device name and channel number. <br> &#x2022; A QStringList object, passed by reference. This should be passed empty to the function, and upon return will be filled with the list of range names.</td>
+<td>&#x2022; AisStatus::NO_ERROR if selection is successful. <br> &#x2022; AisStatus::HANDLER_NOT_FOUND if the specified device is not connected. <br> &#x2022; AisStatus::INCOMPATIBLE_MODEL if the designated device does not have stability range settings.</td>
+</tr>
+</tbody>
+</table>
+<p>This function allows the user to obtain a list of names of the given device&#x2019;s possible stability
+range settings. One of these names can then be passes to setStabilityRange(). For more information
+about the QStringList class, see <a href="https://doc.qt.io/qt-5/qstringlist.html">https://doc.qt.io/qt-5/qstringlist.html</a>.</p>
+<h4 class="mume-header" id="getcurrentstabilityrange">getCurrentStabilityRange</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisStatus<span class="token operator">::</span>FLAG <span class="token function">getCurrentStabilityRange</span><span class="token punctuation">(</span>AisDeviceSetting<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">,</span> QString <span class="token operator">&amp;</span>currentRange<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; A pointer to an AisDeviceSetting object, indicating the device name and channel number. <br>  &#x2022; currentRange, a QString passed by reference. It should be empty when passed to the function, and upon return it contains the name of the selected stability range.</td>
+<td>&#x2022; AisStatus::NO_ERROR if there are no errors. <br> &#x2022; AisStatus::HANDLER_NOT_FOUND if the specified device is not connected. <br> &#x2022; AisStatus::INCOMPATIBLE_MODEL if the designated device does not have stability range settings.</td>
+</tr>
+</tbody>
+</table>
+<p>This function enables the user to determine which stability range is currently selected for a given
+device and channel.</p>
+<h4 class="mume-header" id="startexperiment">startExperiment</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisStatus<span class="token operator">::</span>FLAG <span class="token function">startExperiment</span><span class="token punctuation">(</span>AisExperimentInfo<span class="token operator">*</span> experiment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; A pointer to an AisExperimentInfo object, containing the device name, channel number, and experiment name.</td>
+<td>&#x2022; AisStatus::NO_ERROR if there are no errors. <br> &#x2022; AisStatus::HANDLER_NOT_FOUND if the specified device is not connected. <br> &#x2022; AisStatus::CHANNEL_BUSY if the channel is busy running another experiment. <br> &#x2022; AisStatus::EXPERIMENT_NOT_FOUND if the custom experiment is not found. <br> &#x2022; AisStatus::NODE_UPLOAD_UNSUCCESSFUL if the API encounters an error while uploading the experiment parameters to the hardware. Often cycling power to the unit or disconnecting and reconnecting the device will fix this error.</td>
+</tr>
+</tbody>
+</table>
+<p>This function is called to start an experiment. The device, channel number, and experiment name are
+stored inside of an <strong>AisExperimentInfo</strong> object passed into this function. To accomplish this, first
+create an <strong>AisDeviceSetting</strong> object, passing the instrument name and channel number into the
+constructor. Then create an <strong>AisExperimentInfo</strong> object by passing the <strong>AisDeviceSetting</strong> object as well
+as the experiment name into the constructor. A pointer to an object that implements
+<strong>AisSquidstatNotifier</strong>&#x2019;s virtual functions is also required. For example:</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">mDeviceSetting <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">AisDeviceSetting</span><span class="token punctuation">(</span>_InstrumentName<span class="token punctuation">,</span> _channelNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+mExperimentInfo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">AisExperimentInfo</span><span class="token punctuation">(</span>mDeviceSetting<span class="token punctuation">,</span> _ExperimentName<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>This code snippet is inside a member function of a class that inherits from <strong>AisSquidstatNotifier</strong>
+and implements its virtual functions, hence the keyword &#x201C;this&#x201D; is used to pass the object pointer to
+the <strong>AisExperimentInfo</strong> constructor.</p>
+<h4 class="mume-header" id="stopexperiment">stopExperiment</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisStatus<span class="token operator">::</span>FLAG <span class="token function">stopExperiment</span><span class="token punctuation">(</span><span class="token keyword">const</span> QUuid id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; Id, a QUuid object containing the experiment&#x2019;s associated UUID</td>
+<td>&#x2022; AisStatus::NO_ERROR if there are no errors. <br> &#x2022; AisStatus::HANDLER_NOT_FOUND if the experiment by the UUID cannot be found. <br> &#x2022; AisStatus::EXPERIMENT_NOT_RUN_ON_CHANNEL if the experiment is not running in the first place.</td>
+</tr>
+</tbody>
+</table>
+<p>This function is used to prematurely end an experiment. The
+<strong>AisSquidstatNotifier</strong>::experimentStopped() is still fired when this function is called. The
+experiment UUID can be accessed by calling getExperimentID() from the <strong>AisExperimentInfo</strong> that was
+passed to the startExperiment() function.</p>
+<h4 class="mume-header" id="setappdocumentdir">setAppDocumentDir</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisStatus<span class="token operator">::</span>FLAG <span class="token function">setAppDocumentDir</span><span class="token punctuation">(</span>QString documentDir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; documentDir, a QString specifying the path of both the &#x201C;Calibration files&#x201D; and the &#x201C;Custom Experiments&#x201D; directories</td>
+<td>&#x2022; Always returns AisStatus::NO_ERROR</td>
+</tr>
+</tbody>
+</table>
+<p>This function is used to set the location of the Squidstat calibration files and custom experiment
+files are stored. The default location is in &#x201C;<documents directory>/Admiral Instruments&#x201D;, and this
+is the location that the Squidstat User Interface application uses. However, this function allows
+the user to specify an alternate location. Note that this function must be called before calling the
+<strong>AisSquidstat</strong>::connectNewDeviceAt() function because connectNewDeviceAt() reads and writes from the
+calibration file directory.</documents></p>
+<h4 class="mume-header" id="registerglobalnotifier">registerGlobalNotifier</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisStatus<span class="token operator">::</span>FLAG <span class="token function">registerGlobalNotifier</span><span class="token punctuation">(</span>AisSquidstatNotifier<span class="token operator">*</span> <span class="token keyword">const</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; A pointer to an object derived from the AisSquidstatNotifier class</td>
+<td>&#x2022; Always returns AisStatus::NO_ERROR</td>
+</tr>
+</tbody>
+</table>
+<p>This function is used to register the callback functions that are called when instruments connect
+and disconnect from the software. The argument is a pointer to an object that implements
+AisSquidstatNotifier&#x2019;s virtual functions instrumentReadyToUse() and instrumentDisconnected().</p>
+<h4 class="mume-header" id="closeapplication">closeApplication</h4>
+
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token keyword">void</span> <span class="token function">closeApplication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x2022; None</td>
+<td>&#x2022; Void</td>
+</tr>
+</tbody>
+</table>
+<p>This function stops the <strong>AisSquidstatStarter</strong>::execApp() loop and causes it to return. Device
+connections are closed, and any experiments still running are stopped, and API background processes
+are stopped. In Qt projects, this function will close the entire application since it calls
+QCoreApplication::quit(), and therefore this function may not be appropriate to use for Qt Projects.</p>
+<h2 class="mume-header" id="class-definition-aisdevicesetting">Class Definition: AisDeviceSetting</h2>
+
+<p>Defined in <strong>AisDeviceSetting.h</strong>.</p>
+<p>Public member functions:</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token function">AisDeviceSetting</span><span class="token punctuation">(</span>QString deviceName<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> channel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">~</span><span class="token function">AisDeviceSetting</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>Inherited member functions:</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">QString <span class="token function">getDeviceName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">int</span> <span class="token function">getChannelNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p><strong>AisDeviceSetting</strong> objects are used directly or indirectly to specify an instrument and channel number
+when calling commands with the <strong>AisSquidstat</strong> class. For example, setStabilityRange and
+setIRDropCompensation() pass an <strong>AisDeviceSetting</strong> object pointer as an argument, and
+startExperiment() passes an <strong>AisExperimentInfo</strong> object pointer, which contains an <strong>AisDeviceSetting</strong>
+object pointer as one of its members.</p>
+<p>Note that no default constructor exists for <strong>AisDeviceSetting</strong>,
+so if you use this class as a member object inside a custom class, then you will need to either
+include its constructor in an initialization list or use a pointer as the member instead.</p>
+<h2 class="mume-header" id="class-definition-aissquidstatnotifier">Class Definition: AisSquidstatNotifier</h2>
+
+<p>Defined in <strong>AisSquidstatNotifier.h</strong>.</p>
+<p>Protected functions:</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">instrumentReadyToUse</span><span class="token punctuation">(</span>QString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">instrumentDisconnected</span><span class="token punctuation">(</span>QString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">readDCExperimentData</span><span class="token punctuation">(</span>QUuid<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">readACExperimentData</span><span class="token punctuation">(</span>QUuid<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">experimentStopped</span><span class="token punctuation">(</span>QUuid<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">experimentPaused</span><span class="token punctuation">(</span>QUuid<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">experimentResumed</span><span class="token punctuation">(</span>QUuid<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+</pre><p>The first two functions are callbacks used for &#x201C;general&#x201D; events: when instruments connect and
+disconnect from the software. The callback instrumentReadyToUse() fires when an instrument
+successfully connects to the software after <strong>AisSquidstat</strong>::connectNewDeviceAt() is called. The
+callback instrumentDisconnected() fires whenever an instrument disconnects from the software. Both
+of these callbacks pass the name of the instrument as an argument. In order to use these callbacks,
+the <strong>AisSquidstatNotifier</strong> object that implements these virtual functions must be registered using
+<strong>AisSquidstat</strong>::registerGlobalNotifier().</p>
+<p>The last five functions are callbacks used for events that happen during the course of an
+experiment. The callback readDCExperimentData() fires when DC data is sampled (voltage and current
+data sampled at a particular instance), and readACExperimentData fires when AC data is sampled
+(complex impedance and frequency data sampled during an EIS sweep). The callbacks
+experimentStopped(), experimentPaused(), and experimentResumed() fire when the experiment ends, when
+the experiment is paused, and when the experiment resumes, respectively. Each of the callbacks
+passes the QUuid associated with the experiment as an argument. This is useful in cases where the
+user has registered the same callbacks with separate experiments and needs to identify which
+experiment has fired the callback.</p>
+<p>In order to use these experiment-related callbacks, <strong>AisSquidstatNotifier</strong> object that implements
+these virtual functions must be registered by creating an** AisExperimentInfo** object. This object will
+take a pointer to the <strong>AisSquidstatNotifier</strong> object in its constructor. Then a pointer to the
+<strong>AisExperimentInfo</strong> object is passed to <strong>AisSquidstat</strong>::StartExperiment().</p>
+<p>Refer to the &#x201C;Squidstat API Sample Project Documentation&#x201D; manual for more explanation on how the
+<strong>AisSquidstatNotifier</strong> class and callbacks are used.</p>
+<h2 class="mume-header" id="class-definition-aisexperimentinfo">Class Definition: AisExperimentInfo</h2>
+
+<p>Defined in <strong>AisExperimentInfo.h</strong>.</p>
+<p>Public member functions</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token function">AisExperimentInfo</span><span class="token punctuation">(</span>AisDeviceSetting<span class="token operator">*</span> deviceSettings<span class="token punctuation">,</span>QString customExperiment<span class="token punctuation">,</span>
+AisSquidstatNotifier<span class="token operator">*</span> dataList<span class="token punctuation">)</span><span class="token punctuation">;</span>
+QString <span class="token function">getExperimentName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+QUuid <span class="token function">getExperimentID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+AisDeviceSetting<span class="token operator">*</span> <span class="token function">getDeviceSetting</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> AisSquidstatNotifier<span class="token operator">*</span> <span class="token function">getNotifier</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">~</span><span class="token function">AisExperimentInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>Public member objects:</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">AisDataMap container<span class="token punctuation">;</span>
+</pre><p>The <strong>AisExperimentInfo</strong> class serves two purposes: to pass the necessary info to
+<strong>AisSquidstat</strong>::startExperiment() and to give the user access to the experimental data, through the
+<strong>AisDataMap</strong> &#x201C;container&#x201D; member. AisDataMap is a typedef for QMap&lt;QString, <strong>AisDataStore</strong>&gt;. For more
+information, see the documentation for AisSquidstat::startExperiment() and for the <strong>AisDataStore</strong>
+class.</p>
+<p>Each <strong>AisExperimentInfo</strong> object also stores a QUuid object (which holds an UUID) associated with a
+running experiment. This UUID is generated when the object is created. This can be useful in
+determining which experiment fired a callback when the same callbacks are registered to multiple
+experiments. The QUuid object can be accessed with the member function getExperimentID().</p>
+<p>Note that no default constructor exists for <strong>AisExperimentInfo</strong>, so if you use this class as a member
+object inside a custom class, then you will need to either include its constructor in an
+initialization list or use a pointer as the member instead.</p>
+<h2 class="mume-header" id="class-definition-aisdatastore">Class Definition: AisDataStore</h2>
+
+<p>Defined in <strong>AisDataStore.h</strong>.</p>
+<p>Public member functions:</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token function">AisDataStore</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+qreal <span class="token function">getMinValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+qreal <span class="token function">getMaxValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+QList<span class="token operator">&lt;</span>qreal<span class="token operator">&gt;</span> <span class="token function">getAllDataPoints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+QStringList <span class="token function">getAllStringDataPoints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">bool</span> <span class="token function">isDataListEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">bool</span> <span class="token function">isStringDataListEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+qreal <span class="token function">firstDataPoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+qreal <span class="token function">lastDataPoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+QString <span class="token function">firstStringData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+QString <span class="token function">lastStringData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">numberOfDataPoints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">removeAllDataPoints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>The <strong>AisExperimentInfo</strong> member function &#x201C;container&#x201D; is an <strong>AisDataMap</strong>, which is a typedef for
+QMap&lt;QString, <strong>AisDataStore</strong>&gt;. Each <strong>AisDataStore</strong> object inside an <strong>AisDataMap</strong> holds a given column of
+data, stored as a key-value pair. The list of keys is given in DataLabels.h, which is organized into
+three categories: &#x201C;DC data keys,&#x201D; &#x201C;AC data keys,&#x201D; and &#x201C;Common keys.&#x201D;</p>
+<p>Each <strong>AisDataStore</strong> object contains a list of data, either of text or of doubles. The first type of
+data is accessed by the DC data keys. This is data sampled in the time domain, during a constant
+potential or constant current interval, a current or potential sweep, a current or potential pulse
+train, a constant power or constant resistance interval, or an open circuit interval. The second
+type of data is accessed by the AC data keys. This is data sampled in the frequency domain, during
+EIS sweeps. AC and DC data are expressed as qreal&#x2019;s (a typedef for double). All DC data lists in a
+given experiment will share the same length, as will all AC data lists.</p>
+<p>The third data category of data, accessed by the &#x201C;Common keys,&#x201D; includes information about the
+experiment phase: &#x201C;Step name&#x201D; and &#x201C;Step number.&#x201D; Each data point is expressed as a QString. Instead
+of one data point generated per AC sample or DC sample, in &#x201C;Common keys&#x201D; category there is one
+QString generated at the beginning of every experiment &#x201C;substep.&#x201D; It is not always intuitive to the
+user how many substeps comprise an experiment; therefore, it is not straightforward to correlate the
+correct step name and number with a given AC or DC data point. The recommended strategy is to look
+up the latest step name and number in the <strong>AisDataStore</strong> list whenever an AC or DC data point arrives.
+For example:</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token keyword">void</span> SquidstatAppHandler<span class="token operator">::</span><span class="token function">readDCExperimentData</span><span class="token punctuation">(</span>QUuid id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    qreal time <span class="token operator">=</span> mExperimentInfo<span class="token operator">-&gt;</span>container<span class="token punctuation">[</span>DCDATA_ELAPSED_TIME_S<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">lastDataPoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    qreal WE <span class="token operator">=</span> mExperimentInfo<span class="token operator">-&gt;</span>container<span class="token punctuation">[</span>DCDATA_WORKING_ELECTRODE<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">lastDataPoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    qreal current <span class="token operator">=</span> mExperimentInfo<span class="token operator">-&gt;</span>container<span class="token punctuation">[</span>DCDATA_CURRENT<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">lastDataPoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QString ExperimentSubstepName <span class="token operator">=</span> mExperimentInfo<span class="token operator">-&gt;</span>container<span class="token punctuation">[</span>CURRENT_NODE_NAME<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">lastStringData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QString text <span class="token operator">=</span> ExperimentSubstepName <span class="token operator">+</span><span class="token string">&quot;: &quot;</span><span class="token punctuation">;</span>
+    text <span class="token operator">+=</span> QString<span class="token operator">::</span><span class="token function">number</span><span class="token punctuation">(</span>time<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;(s), &quot;</span><span class="token punctuation">;</span>
+    text <span class="token operator">+=</span> QString<span class="token operator">::</span><span class="token function">number</span><span class="token punctuation">(</span>WE<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;(V), &quot;</span><span class="token punctuation">;</span>
+    text <span class="token operator">+=</span> QString<span class="token operator">::</span><span class="token function">number</span><span class="token punctuation">(</span>current<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;(mA)\n&quot;</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> text<span class="token punctuation">.</span><span class="token function">toStdString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>For more information on how to access experimental data from the <strong>AisExperimentInfo</strong> &#x201C;container&#x201D;
+member object, refer to the &#x201C;Squidstat API Sample Project Documentation.&#x201D;</p>
+<p>Here is a brief description of each of the public member functions:</p>
+<ul>
+<li>getMinValue() returns the most negative data point (only for <strong>AisDataStore</strong> objects containing
+qreal (double) data)</li>
+<li>getMaxValue() returns the most positive data point (only for <strong>AisDataStore</strong> objects containing qreal (double) data)</li>
+<li>getAllDataPoints() returns a QList<qreal> of sampled data (only for <strong>AisDataStore</strong> objects containing qreal (double) data). For more information on the QList class, see <a href="https://doc.qt.io/qt-5/qlist.html">https://doc.qt.io/qt-5/qlist.html</a>.</qreal></li>
+<li>getAllStringDataPoints() returns a QStringList of text data (only for <strong>AisDataStore</strong> objects containing QString data). For more information about the QStringList class, see <a href="https://doc.qt.io/qt-">https://doc.qt.io/qt-</a> 5/qstringlist.html.</li>
+<li>bool isDataListEmpty() returns true if there is no qreal (double) data in the list.</li>
+<li>bool isStringDataListEmpty() returns true if there is no text data in the list.</li>
+<li>firstDataPoint() returns the first data point in the qreal (double) list.</li>
+<li>qreal lastDataPoint() returns the last data point in the qreal (double) list.</li>
+<li>QString firstStringData() returns the first data point in the QString list.</li>
+<li>QString lastStringData() returns the last data point in the QString list.</li>
+<li>int numberOfDataPoints() returns the length of the data list.</li>
+<li>void removeAllDataPoints() clears all data stored in the list.</li>
+</ul>
+<h2 class="mume-header" id="class-definition-aisdeviceinfo">Class definition: AisDeviceInfo</h2>
+
+<p>Defined in <strong>AisDeviceInfo.h</strong>.</p>
+<p>Public member functions:</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token function">AisDeviceInfo</span><span class="token punctuation">(</span><span class="token keyword">const</span> QString deviceName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">~</span><span class="token function">AisDeviceInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+QString <span class="token function">getFirmware</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">int</span> <span class="token function">getNumberOfChannels</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>Inherited member functions:</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">QString <span class="token function">getDeviceName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>The <strong>AisDeviceInfo</strong> class is used to get the firmware information and number of channels for a
+specified device. Create an <strong>AisDeviceInfo</strong> object by passing the device name to the constructor. Then
+pass a pointer to the <strong>AisDeviceInfo</strong> object to <strong>AisSquidstat</strong>&#x2019;s member function getDeviceInformation().
+When the function returns you can use getFirmware() to read the firmware version (stored as a
+QString) and getNumberOfChannels() to determine the number of channels the device has.</p>
+<p>Note that no default constructor exists for <strong>AisDeviceInfo</strong>, so if you use this class as a member
+object inside a custom class, then you will need to either include its constructor in an
+initialization list or use a pointer as the member instead.</p>
+<h2 class="mume-header" id="class-definition-aischannelinfo">Class Definition: AisChannelInfo</h2>
+
+<p>Defined in <strong>AisChannelInfo.h</strong>.</p>
+<p>Public member functions:</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token function">AisChannelInfo</span><span class="token punctuation">(</span><span class="token keyword">const</span> QString deviceName<span class="token punctuation">,</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> channel <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">~</span><span class="token function">AisChannelInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>Inherited members</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">QString <span class="token function">getDeviceName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">int</span> <span class="token function">getChannelNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>The <strong>AisChannelInfo</strong> class will be used in future Squidsat API releases to get the status of a
+specified channel on a device. As of this release, however, <strong>AisChannelInfo</strong> does not contain any
+useful information. This class will be used in the following way: create an <strong>AisChannelInfo</strong> object by
+passing the device name and channel number to the constructor. Then pass a pointer to this object to
+<strong>AisSquidstat</strong>&#x2019;s member function getChannelInformation(). When the function returns it will contain
+useful information about the channel&#x2019;s status, accessible through getter functions that have yet to
+be implemented.</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
