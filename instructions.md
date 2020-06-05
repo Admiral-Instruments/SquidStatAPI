@@ -1,44 +1,44 @@
 # Squidstat API User's Guide
 
 - [Squidstat API User's Guide](#squidstat-api-users-guide)
-  - [Introduction](#introduction)
-  - [Class diagram](#class-diagram)
-  - [Class Definition: AisSquidstatStarter](#class-definition-aissquidstatstarter)
-    - [AisSquidstatStarter Member Functions](#aissquidstatstarter-member-functions)
-      - [registerStart](#registerstart)
-      - [init app](#init-app)
-      - [startApp](#startapp)
-      - [execApp](#execapp)
-  - [Class Definition: AisSquidstat](#class-definition-aissquidstat)
-    - [AisSquidstat Member Functions](#aissquidstat-member-functions)
-      - [getInstance](#getinstance)
-      - [connectNewDeviceAt](#connectnewdeviceat)
-      - [LoadBuilderElements](#loadbuilderelements)
-      - [UpdateCustomExperimentList](#updatecustomexperimentlist)
-      - [getConnectedDevices](#getconnecteddevices)
-      - [getCustomExperiments](#getcustomexperiments)
-      - [getDeviceInformation](#getdeviceinformation)
-      - [getChannelInformation](#getchannelinformation)
-      - [setIRDropCompensation](#setirdropcompensation)
-      - [getIRDropCompensation](#getirdropcompensation)
-      - [setStabilityRange](#setstabilityrange)
-      - [getStabilityRangeList](#getstabilityrangelist)
-      - [getCurrentStabilityRange](#getcurrentstabilityrange)
-      - [startExperiment](#startexperiment)
-      - [stopExperiment](#stopexperiment)
-      - [setAppDocumentDir](#setappdocumentdir)
-      - [registerGlobalNotifier](#registerglobalnotifier)
-      - [closeApplication](#closeapplication)
-  - [Class Definition: AisDeviceSetting](#class-definition-aisdevicesetting)
-  - [Class Definition: AisSquidstatNotifier](#class-definition-aissquidstatnotifier)
-  - [Class Definition: AisExperimentInfo](#class-definition-aisexperimentinfo)
-  - [Class Definition: AisManualExperimentInfo](#class-definition-aismanualexperimentinfo)
-    - [AisManualExperimentInfo Member Functions](#aismanualexperimentinfo-member-functions)
-      - [AisManualExperimentInfo](#aismanualexperimentinfo)
-      - [setManualExperimentinfo](#setmanualexperimentinfo)
-  - [Class Definition: AisDataStore](#class-definition-aisdatastore)
-  - [Class definition: AisDeviceInfo](#class-definition-aisdeviceinfo)
-  - [Class Definition: AisChannelInfo](#class-definition-aischannelinfo)
+    - [Introduction](#introduction)
+    - [Class diagram](#class-diagram)
+    - [Class Definition: AisSquidstatStarter](#class-definition-aissquidstatstarter)
+        - [AisSquidstatStarter Member Functions](#aissquidstatstarter-member-functions)
+            - [registerStart](#registerstart)
+            - [initApp](#initapp)
+            - [startApp](#startapp)
+            - [execApp](#execapp)
+    - [Class Definition: AisSquidstat](#class-definition-aissquidstat)
+        - [AisSquidstat Member Functions](#aissquidstat-member-functions)
+            - [getInstance](#getinstance)
+            - [connectNewDeviceAt](#connectnewdeviceat)
+            - [LoadBuilderElements](#loadbuilderelements)
+            - [UpdateCustomExperimentList](#updatecustomexperimentlist)
+            - [getConnectedDevices](#getconnecteddevices)
+            - [getCustomExperiments](#getcustomexperiments)
+            - [getDeviceInformation](#getdeviceinformation)
+            - [getChannelInformation](#getchannelinformation)
+            - [setIRDropCompensation](#setirdropcompensation)
+            - [getIRDropCompensation](#getirdropcompensation)
+            - [setStabilityRange](#setstabilityrange)
+            - [getStabilityRangeList](#getstabilityrangelist)
+            - [getCurrentStabilityRange](#getcurrentstabilityrange)
+            - [startExperiment](#startexperiment)
+            - [stopExperiment](#stopexperiment)
+            - [setAppDocumentDir](#setappdocumentdir)
+            - [registerGlobalNotifier](#registerglobalnotifier)
+            - [closeApplication](#closeapplication)
+    - [Class Definition: AisDeviceSetting](#class-definition-aisdevicesetting)
+    - [Class Definition: AisSquidstatNotifier](#class-definition-aissquidstatnotifier)
+    - [Class Definition: AisExperimentInfo](#class-definition-aisexperimentinfo)
+    - [Class Definition: AisManualExperimentInfo](#class-definition-aismanualexperimentinfo)
+        - [AisManualExperimentInfo Member Functions](#aismanualexperimentinfo-member-functions)
+            - [AisManualExperimentInfo](#aismanualexperimentinfo)
+            - [setManualExperimentinfo](#setmanualexperimentinfo)
+    - [Class Definition: AisDataStore](#class-definition-aisdatastore)
+    - [Class definition: AisDeviceInfo](#class-definition-aisdeviceinfo)
+    - [Class Definition: AisChannelInfo](#class-definition-aischannelinfo)
 
 
 ## Introduction
@@ -46,33 +46,33 @@ The Squidstat API has two primary classes with which users can interact, and sev
 
 The two primary classes are:
 
-* **AisSquidstatStarter**
+* [**AisSquidstatStarter**](#class-definition-aissquidstatstarter)
     * used to initiate the application loop that interacts with the instrument.
 
-* **AisSquidstat**
+* [**AisSquidstat**](#class-definition-aissquidstat)
     * used to interact with the application loop, and deals with event handling and data transfer.
 
 The helper classes as well as a brief description are as follows:
-* **AisDeviceSetting**
+* [**AisDeviceSetting**](#class-definition-aisdevicesetting)
     *  a small class used to store the instrument serial name and channel number associated with an experiment.
 
-* **AisSquidstatNotifier**
+* [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier)
     * An abstract class whose virtual functions are used as callback functions for when
       important events happen during an experiment. The user must create a derived class and
       implement the virtual functions in order to have their callbacks fired when data arrives or
       when the experiment pauses, resumes, or stops.
-* **AisExperimentInfo**
-    * Holds pointers to an [AisDeviceSetting](#class-definition-aisdevicesetting) object and an [AisSquidstatNotifier](#class-definition-aissquidstatnotifier) object in
+* [**AisExperimentInfo**](#class-definition-aisexperimentinfo)
+    * Holds pointers to an [**AisDeviceSetting**](#class-definition-aisdevicesetting) object and an [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier) object in
       order to pass them to the member function [``startExperiment()``](#startexperiment).
       It also holds the container for the experimental data.
-* **AisManualExperimentInfo**
-   * Holds pointers to an [AisDeviceSetting](#class-definition-aisdevicesetting) object and an [AisSquidstatNotifier](#class-definition-aissquidstatnotifier) object in
-      order to pass them to the member function [``startManualExperimentM()``](#startexperiment).
-      It also holds the container for the manual experimental data. It is derived form [AisExperimentInfo](#class-definition-aisexperimentinfo)
+* [**AisManualExperimentInfo**](#class-definition-aismanualexperimentinfo)
+   * Holds pointers to an [**AisDeviceSetting**](#class-definition-aisdevicesetting) object and an [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier) object in
+      order to pass them to the member function [``startManualExperiment()``](#startexperiment).
+      It also holds the container for the manual experimental data. It is derived form [**AisExperimentInfo**](#class-definition-aisexperimentinfo)
 * **AisDataStore**
     * Objects each hold one column’s worth of data (data from a single experimental variable, e.g.
-      current, voltage, timestamp, etc.). Several [AisDataStore](#class-definition-aisdatastore) objects comprise a container for a
-      given experiment, stored inside [AisExerimentInfo](#class-definition-aisexperimentinfo).
+      current, voltage, timestamp, etc.). Several [**AisDataStore**](#class-definition-aisdatastore) objects comprise a container for a
+      given experiment, stored inside [**AisExperimentInfo**](#class-definition-aisexperimentinfo).
 * **AisDeviceInfo**
     * An object that holds information about the firmware version and number of channels of a
       given device.
@@ -102,10 +102,13 @@ classDiagram
       }
       class AisSquidstatStarter{
         +registerStart(void(*)()):void
-        +initApp():void 
+        +initApp():void
         +startApp():void
         +execApp():int
       }
+```
+```mermaid
+classDiagram
       class AisSquidstat{
         +getInstance(void*):AisSquidstat*
         +connectNewDeviceAt(QString):void
@@ -136,6 +139,15 @@ classDiagram
         +registerGlobalNotifier(AisSquidstatNotifier* const):AisStatus::FLAG
         +closeApplication():AisStatus::FLAG
 	   }
+      class AisDeviceInfo{
+          -QString firmwareVersion
+	        -unsigned int numberOfChannel
+          +getFirmware():QString
+          +getNumberOfChannels():unsigned int
+      }
+```
+```mermaid
+classDiagram
       class AisExperimentInfo{
           -QString _customExpeiment;
 	        -AisDeviceSetting* _deviceSettings;
@@ -162,12 +174,6 @@ classDiagram
          +getIndexOfCurrentRange():int
          +getCellPosition():bool
       }
-      class AisDeviceInfo{
-          -QString firmwareVersion
-	        -unsigned int numberOfChannel
-          +getFirmware():QString
-          +getNumberOfChannels():unsigned int
-      }      
 ```
 
 
@@ -184,15 +190,15 @@ void startApp();
 int execApp();
 ```
 
-**AisSquidstatStarter** initializes all of the Squidstat API background processes and starts the
+[**AisSquidstatStarter**](#class-definition-aissquidstatstarter) initializes all of the Squidstat API background processes and starts the
 application loop that polls for events, such as data and notifications that arrive from the
 hardware. The important member functions (for users **not** using the QtCoreApplication class to
-build their application) are [``initApp()``](#init-app) and [``execApp()``](#execapp). For those users who use the QtCoreApplication
+build their application) are [``initApp()``](#initapp) and [``execApp()``](#execapp). For those users who use the QtCoreApplication
 class, the [``startApp()``](#startapp) function will suffice.
 
-The **AisSquidstatStarter** class also provides the ability to register a callback app with the
+The [**AisSquidstatStarter**](#class-definition-aissquidstatstarter) class also provides the ability to register a callback app with the
 [``registerStart()``](#registerstart) function, which allows multi-threaded applications to coordinate asynchronously with
-the return of the [``initApp()``](#init-app) function, which takes a few seconds to execute.
+the return of the [``initApp()``](#initapp) function, which takes a few seconds to execute.
 
 ### AisSquidstatStarter Member Functions
 
@@ -206,9 +212,9 @@ void registerStart(void(*)() func);
 |---|---|
 | • Function Pointer with void return type and no arguments | • Nothing  |
 
-The function [``initApp()``](#init-app) takes a one or two seconds to execute. The function [``registerStart()``](#registerstart) can be used to register a callback function that executes at the very end of [``initApp()``](#init-app). This can be useful in multi- threaded applications where the user does not want to wait for [``initApp()``](#init-app) to return before starting other processes.
+The function [``initApp()``](#initapp) takes a one or two seconds to execute. The function [``registerStart()``](#registerstart) can be used to register a callback function that executes at the very end of [``initApp()``](#initapp). This can be useful in multi- threaded applications where the user does not want to wait for [``initApp()``](#initapp) to return before starting other processes.
 
-#### init app
+#### initApp
 ```c++
 void initApp();
 ```
@@ -229,9 +235,9 @@ void startApp();
 |---|---|
 | • None  |  • Void |
 
-This function is for Qt application development only, and it should be called instead of [``initApp()``](#init-app)
+This function is for Qt application development only, and it should be called instead of [``initApp()``](#initapp)
 and [``execApp()``](#execapp). In a Qt application, the user would first create a QtCoreApplication object and then
-call its [``exec()``](https://doc.qt.io/qt-5/qcoreapplication.html#exec) member function. In a non-Qt project, [``initApp()``](#init-app) and [``execApp()``](#execapp) accomplish these two
+call its [``exec()``](https://doc.qt.io/qt-5/qcoreapplication.html#exec) member function. In a non-Qt project, [``initApp()``](#initapp) and [``execApp()``](#execapp) accomplish these two
 tasks.
 
 #### execApp
@@ -244,7 +250,7 @@ void execApp();
 
 This function starts the control loop that polls for events related to Squidstat hardware activity.
 It will handle all of the background processes that communicate with the instruments, and it also
-fires the callbacks in **AisSquidstatNotifier**. This function will not return until
+fires the callbacks in [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier). This function will not return until
 **AisSquidstat::closeApplication()** is called.
 
 ## Class Definition: AisSquidstat
@@ -275,9 +281,9 @@ AisStatus::FLAG registerGlobalNotifier(AisSquidstatNotifier* const);
 void closeApplication();
 ```
 
-The **AisSquidstat** class is the primary way that users will control the connected devices. From
+The [**AisSquidstat**](#class-definition-aissquidstat) class is the primary way that users will control the connected devices. From
 this class users can send commands to individual instruments, such as starting and stopping
-experiments. There should only be one **AisSquidstat** object running in a given application, and it
+experiments. There should only be one [**AisSquidstat**](#class-definition-aissquidstat) object running in a given application, and it
 is acquired using the static getInstance() function, and not through a constructor.
 
 ### AisSquidstat Member Functions
@@ -293,7 +299,7 @@ static AisSquidstat* getInstance(void* mainWindow = nullptr);
 
 
 Note that this is a static member function. It provides a pointer to the object created by
-**AisSquidstatStarter::initApp()**. This pointer gives access to the user to control connected
+[**AisSquidstatStarter**](#class-definition-aissquidstatstarter)::[``initApp()``](#initapp). This pointer gives access to the user to control connected
 instruments.
 
 #### connectNewDeviceAt
@@ -309,7 +315,7 @@ at which to search. If this argument is omitted, then the software will poll all
 ports. Any non-Squidstat devices at available COM ports will receive a “ping,” and the software will
 wait until a response has timed out before continuing on to the next device on the list. Whenever a
 Squidstat device is found, calibration data will automatically be downloaded if necessary, and the
-**AisSquidstatNotifier::instrumentReadyToUse()** callback will be fired.
+[**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier)::instrumentReadyToUse() callback will be fired.
 
 #### LoadBuilderElements
 ```c++
@@ -344,7 +350,7 @@ void UpdateCustomExperimentList();
 This function is useful for users who want to add or edit custom experiment files on-the-fly. Each
 custom experiment is stored as a JSON file, the text of which can be read and modified outside of
 the Squidstat User Interface Experiment Builder. However, the JSON files are parsed when
-**AisSquidstatStarter::initApp()** is called. In order to refresh the list for new or modified
+[**AisSquidstatStarter**](#class-definition-aissquidstatstarter)::[``initApp()``](#initapp) is called. In order to refresh the list for new or modified
 files, UpdateCustomExperimentList() must be called. Note that for existing JSON files that are
 modified and not renamed, the API will not recognize any changes to the file unless the UUID field
 inside the file is changed. Users can generate a new UUID using the class QUuid, which is included
@@ -362,9 +368,9 @@ AisStatus::FLAG getConnectedDevices(QStringList& connectedDevices);
 
 This function provides a list of serial numbers/device names of the Squidstat devices connected to
 the software. Note that the API can only interact with and open connections that are closed when
-AisSquidstatStarter::initApp() is called, and so open instances of the Squidstat User Interface or
+[**AisSquidstatStarter**](#class-definition-aissquidstatstarter)::[``initApp()``](#initapp) is called, and so open instances of the Squidstat User Interface or
 other programs running the Squidstat API will interfere with device connectivity. The Squidstat API
-searches for newly connected devices only when the **AisSquidstat::connectNewDeviceAt()** function
+searches for newly connected devices only when the [**AisSquidstat**](#class-definition-aissquidstat)::connectNewDeviceAt() function
 is called. For more information about the QStringList class, see
 https://doc.qt.io/qt-5/qstringlist.html.
 
@@ -424,7 +430,7 @@ double UnCompensatedResistance, double CompensationLevel);
 
 This function allows the user to set the IR drop compensation settings, as one would in the
 Squidstat User Interface menu. The user selects the desired instrument and channel by creating an
-**AisDeviceSetting** object and passing it to this function. The user also provides the two parameters
+[**AisDeviceSetting**](#class-definition-aisdevicesetting) object and passing it to this function. The user also provides the two parameters
 (doubles) specifying the uncompensated resistance and compensation level. For more information on IR
 drop compensation and compensation settings, see the Squidstat User Interface manual.
 
@@ -499,20 +505,20 @@ AisStatus::FLAG startExperiment(AisExperimentInfo* experiment);
 | • A pointer to an AisExperimentInfo object, containing the device name, channel number, and experiment name. |  • AisStatus::NO_ERROR if there are no errors. <br> • AisStatus::HANDLER_NOT_FOUND if the specified device is not connected. <br> • AisStatus::CHANNEL_BUSY if the channel is busy running another experiment. <br> • AisStatus::EXPERIMENT_NOT_FOUND if the custom experiment is not found. <br> • AisStatus::NODE_UPLOAD_UNSUCCESSFUL if the API encounters an error while uploading the experiment parameters to the hardware. Often cycling power to the unit or disconnecting and reconnecting the device will fix this error.|
 
 This function is called to start an experiment. The device, channel number, and experiment name are
-stored inside of an **AisExperimentInfo** object passed into this function. To accomplish this, first
-create an **AisDeviceSetting** object, passing the instrument name and channel number into the
-constructor. Then create an **AisExperimentInfo** object by passing the **AisDeviceSetting** object as well
+stored inside of an [**AisExperimentInfo**](#class-definition-aisexperimentinfo) object passed into this function. To accomplish this, first
+create an [**AisDeviceSetting**](#class-definition-aisdevicesetting) object, passing the instrument name and channel number into the
+constructor. Then create an [**AisExperimentInfo**](#class-definition-aisexperimentinfo) object by passing the [**AisDeviceSetting**](#class-definition-aisdevicesetting) object as well
 as the experiment name into the constructor. A pointer to an object that implements
-**AisSquidstatNotifier**’s virtual functions is also required. For example:
+[**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier)’s virtual functions is also required. For example:
 
 ```c++
 mDeviceSetting = new AisDeviceSetting(_InstrumentName, _channelNum);
 mExperimentInfo = new AisExperimentInfo(mDeviceSetting, _ExperimentName, this);
 ```
 
-This code snippet is inside a member function of a class that inherits from **AisSquidstatNotifier**
+This code snippet is inside a member function of a class that inherits from [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier)
 and implements its virtual functions, hence the keyword “this” is used to pass the object pointer to
-the **AisExperimentInfo** constructor.
+the [**AisExperimentInfo**](#class-definition-aisexperimentinfo) constructor.
 
 #### stopExperiment
 ```c++
@@ -524,8 +530,8 @@ AisStatus::FLAG stopExperiment(const QUuid id);
 | • Id, a QUuid object containing the experiment’s associated UUID  |  • AisStatus::NO_ERROR if there are no errors. <br> • AisStatus::HANDLER_NOT_FOUND if the experiment by the UUID cannot be found. <br> • AisStatus::EXPERIMENT_NOT_RUN_ON_CHANNEL if the experiment is not running in the first place.|
 
 This function is used to prematurely end an experiment. The
-**AisSquidstatNotifier**::experimentStopped() is still fired when this function is called. The
-experiment UUID can be accessed by calling getExperimentID() from the **AisExperimentInfo** that was
+[**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier)::experimentStopped() is still fired when this function is called. The
+experiment UUID can be accessed by calling getExperimentID() from the [**AisExperimentInfo**](#class-definition-aisexperimentinfo) that was
 passed to the startExperiment() function.
 
 #### setAppDocumentDir
@@ -541,7 +547,7 @@ This function is used to set the location of the Squidstat calibration files and
 files are stored. The default location is in “<Documents directory>/Admiral Instruments”, and this
 is the location that the Squidstat User Interface application uses. However, this function allows
 the user to specify an alternate location. Note that this function must be called before calling the
-**AisSquidstat**::connectNewDeviceAt() function because connectNewDeviceAt() reads and writes from the
+[**AisSquidstat**](#class-definition-aissquidstat)::connectNewDeviceAt() function because connectNewDeviceAt() reads and writes from the
 calibration file directory.
 
 #### registerGlobalNotifier
@@ -555,7 +561,7 @@ AisStatus::FLAG registerGlobalNotifier(AisSquidstatNotifier* const);
 
 This function is used to register the callback functions that are called when instruments connect
 and disconnect from the software. The argument is a pointer to an object that implements
-AisSquidstatNotifier’s virtual functions instrumentReadyToUse() and instrumentDisconnected().
+[**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier)’s virtual functions instrumentReadyToUse() and instrumentDisconnected().
 
 #### closeApplication
 ```c++
@@ -566,7 +572,7 @@ void closeApplication();
 |---|---|
 | • None  |  • Void |
 
-This function stops the **AisSquidstatStarter**::execApp() loop and causes it to return. Device
+This function stops the [**AisSquidstatStarter**](#class-definition-aissquidstatstarter)::execApp() loop and causes it to return. Device
 connections are closed, and any experiments still running are stopped, and API background processes
 are stopped. In Qt projects, this function will close the entire application since it calls
 QCoreApplication::quit(), and therefore this function may not be appropriate to use for Qt Projects.
@@ -588,13 +594,13 @@ QString getDeviceName();
 unsigned int getChannelNumber();
 ```
 
-**AisDeviceSetting** objects are used directly or indirectly to specify an instrument and channel number
-when calling commands with the **AisSquidstat** class. For example, setStabilityRange and
-setIRDropCompensation() pass an **AisDeviceSetting** object pointer as an argument, and
-startExperiment() passes an **AisExperimentInfo** object pointer, which contains an **AisDeviceSetting**
+[**AisDeviceSetting**](#class-definition-aisdevicesetting) objects are used directly or indirectly to specify an instrument and channel number
+when calling commands with the [**AisSquidstat**](#class-definition-aissquidstat) class. For example, setStabilityRange and
+setIRDropCompensation() pass an [**AisDeviceSetting**](#class-definition-aisdevicesetting) object pointer as an argument, and
+startExperiment() passes an [**AisExperimentInfo**](#class-definition-aisexperimentinfo) object pointer, which contains an [**AisDeviceSetting**](#class-definition-aisdevicesetting)
 object pointer as one of its members.
 
-Note that no default constructor exists for **AisDeviceSetting**,
+Note that no default constructor exists for [**AisDeviceSetting**](#class-definition-aisdevicesetting),
 so if you use this class as a member object inside a custom class, then you will need to either
 include its constructor in an initialization list or use a pointer as the member instead.
 
@@ -617,11 +623,11 @@ virtual void experimentResumed(QUuid) = 0;
 
 The first two functions are callbacks used for “general” events: when instruments connect and
 disconnect from the software. The callback instrumentReadyToUse() fires when an instrument
-successfully connects to the software after **AisSquidstat**::connectNewDeviceAt() is called. The
+successfully connects to the software after [**AisSquidstat**](#class-definition-aissquidstat)::connectNewDeviceAt() is called. The
 callback instrumentDisconnected() fires whenever an instrument disconnects from the software. Both
 of these callbacks pass the name of the instrument as an argument. In order to use these callbacks,
-the **AisSquidstatNotifier** object that implements these virtual functions must be registered using
-**AisSquidstat**::registerGlobalNotifier().
+the [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier) object that implements these virtual functions must be registered using
+[**AisSquidstat**](#class-definition-aissquidstat)::registerGlobalNotifier().
 
 The last five functions are callbacks used for events that happen during the course of an
 experiment. The callback readDCExperimentData() fires when DC data is sampled (voltage and current
@@ -633,13 +639,13 @@ passes the QUuid associated with the experiment as an argument. This is useful i
 user has registered the same callbacks with separate experiments and needs to identify which
 experiment has fired the callback.
 
-In order to use these experiment-related callbacks, **AisSquidstatNotifier** object that implements
+In order to use these experiment-related callbacks, [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier) object that implements
 these virtual functions must be registered by creating an** AisExperimentInfo** object. This object will
-take a pointer to the **AisSquidstatNotifier** object in its constructor. Then a pointer to the
-**AisExperimentInfo** object is passed to **AisSquidstat**::StartExperiment().
+take a pointer to the [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier) object in its constructor. Then a pointer to the
+[**AisExperimentInfo**](#class-definition-aisexperimentinfo) object is passed to [**AisSquidstat**](#class-definition-aissquidstat)::StartExperiment().
 
 Refer to the “Squidstat API Sample Project Documentation” manual for more explanation on how the
-**AisSquidstatNotifier** class and callbacks are used.
+[**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier) class and callbacks are used.
 
 ## Class Definition: AisExperimentInfo
 
@@ -651,8 +657,8 @@ AisExperimentInfo(AisDeviceSetting* deviceSettings,QString customExperiment,
 AisSquidstatNotifier* dataList);
 QString getExperimentName();
 QUuid getExperimentID();
-AisDeviceSetting* getDeviceSetting(); 
-AisSquidstatNotifier* getNotifier(); 
+AisDeviceSetting* getDeviceSetting();
+AisSquidstatNotifier* getNotifier();
 ~AisExperimentInfo();
 ```
 
@@ -661,18 +667,18 @@ Public member objects:
 AisDataMap container;
 ```
 
-The **AisExperimentInfo** class serves two purposes: to pass the necessary info to
-**AisSquidstat**::startExperiment() and to give the user access to the experimental data, through the
+The [**AisExperimentInfo**](#class-definition-aisexperimentinfo) class serves two purposes: to pass the necessary info to
+[**AisSquidstat**](#class-definition-aissquidstat)::startExperiment() and to give the user access to the experimental data, through the
 **AisDataMap** “container” member. AisDataMap is a typedef for QMap<QString, **AisDataStore**>. For more
-information, see the documentation for AisSquidstat::startExperiment() and for the **AisDataStore**
+information, see the documentation for [**AisSquidstat**](#class-definition-aissquidstat)::startExperiment() and for the **AisDataStore**
 class.
 
-Each **AisExperimentInfo** object also stores a QUuid object (which holds an UUID) associated with a
+Each [**AisExperimentInfo**](#class-definition-aisexperimentinfo) object also stores a QUuid object (which holds an UUID) associated with a
 running experiment. This UUID is generated when the object is created. This can be useful in
 determining which experiment fired a callback when the same callbacks are registered to multiple
 experiments. The QUuid object can be accessed with the member function getExperimentID().
 
-Note that no default constructor exists for **AisExperimentInfo**, so if you use this class as a member
+Note that no default constructor exists for [**AisExperimentInfo**](#class-definition-aisexperimentinfo), so if you use this class as a member
 object inside a custom class, then you will need to either include its constructor in an
 initialization list or use a pointer as the member instead.
 
@@ -693,7 +699,7 @@ int  getIndexOfCurrentRange() const;
 bool  getCellPosition() const;
  ~AisManualExperimentInfo();
 ```
-The [AisManualExperimentInfo](#class-definition-aismanualexperimentinfo) is use to start manual experiment. It is derived class of  [AisExperimentInfo](#class-definition-aisexperimentinfo). 
+The [AisManualExperimentInfo](#class-definition-aismanualexperimentinfo) is use to start manual experiment. It is derived class of  [AisExperimentInfo](#class-definition-aisexperimentinfo).
 
 ### AisManualExperimentInfo Member Functions
 
@@ -708,7 +714,10 @@ AisManualExperimentInfo(AisDeviceSetting* deviceSettings, AisSquidstatNotifier* 
 | ``deviceSettings``   assign instrument serial name and channel <br> ``notifier`` assign notifier for manual experiment   | • Nothing  |
 
 
-This funcation is help to create the funcation experiment. It will take two argument. Pointer of [AisDeviceSetting](#class-definition-aisdevicesetting) is help to specify the instrument name and Channel number. Pointer of [AisSquidstatNotifier](#class-definition-aissquidstatnotifier) is help to call back method for manual experiment.  
+This function is help to create the function experiment. It will take two argument. Pointer of
+AisDeviceSetting is help to specify the instrument name and Channel number. Pointer of
+[**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier) is help to call back method for
+manual experiment.
 
 
 #### setManualExperimentinfo
@@ -721,7 +730,7 @@ void setManualExperimentinfo(double samplingInterval = 1, bool isCellOn = false,
 |---|---|
 | ``samplingInterval`` set sampling interval <br> ``isCellOn`` set the cell position  <br>  isGalvanostaticMode`  | • Nothing  |
 
-This funcation is help to create the funcation experiment. It will take two argument. Pointer of [AisDeviceSetting](#class-definition-aisdevicesetting) is help to specify the instrument name and Channel number. Pointer of [AisSquidstatNotifier](#class-definition-aissquidstatnotifier) is help to call back method for manual experiment. 
+This funcation is help to create the funcation experiment. It will take two argument. Pointer of AisDeviceSetting is help to specify the instrument name and Channel number. Pointer of [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier) is help to call back method for manual experiment.
 
 
 
@@ -746,7 +755,7 @@ QString lastStringData();
 int numberOfDataPoints();
 void removeAllDataPoints();
 ```
-The **AisExperimentInfo** member function “container” is an **AisDataMap**, which is a typedef for
+The [**AisExperimentInfo**](#class-definition-aisexperimentinfo) member function “container” is an **AisDataMap**, which is a typedef for
 QMap<QString, **AisDataStore**>. Each **AisDataStore** object inside an **AisDataMap** holds a given column of
 data, stored as a key-value pair. The list of keys is given in DataLabels.h, which is organized into
 three categories: “DC data keys,” “AC data keys,” and “Common keys.”
@@ -782,7 +791,7 @@ void SquidstatAppHandler::readDCExperimentData(QUuid id) {
 }
 ```
 
-For more information on how to access experimental data from the **AisExperimentInfo** “container”
+For more information on how to access experimental data from the [**AisExperimentInfo**](#class-definition-aisexperimentinfo) “container”
 member object, refer to the “Squidstat API Sample Project Documentation.”
 
 Here is a brief description of each of the public member functions:
@@ -822,7 +831,7 @@ QString getDeviceName();
 
 The **AisDeviceInfo** class is used to get the firmware information and number of channels for a
 specified device. Create an **AisDeviceInfo** object by passing the device name to the constructor. Then
-pass a pointer to the **AisDeviceInfo** object to **AisSquidstat**’s member function getDeviceInformation().
+pass a pointer to the **AisDeviceInfo** object to [**AisSquidstat**](#class-definition-aissquidstat)’s member function getDeviceInformation().
 When the function returns you can use getFirmware() to read the firmware version (stored as a
 QString) and getNumberOfChannels() to determine the number of channels the device has.
 
@@ -851,6 +860,6 @@ The **AisChannelInfo** class will be used in future Squidsat API releases to get
 specified channel on a device. As of this release, however, **AisChannelInfo** does not contain any
 useful information. This class will be used in the following way: create an **AisChannelInfo** object by
 passing the device name and channel number to the constructor. Then pass a pointer to this object to
-**AisSquidstat**’s member function getChannelInformation(). When the function returns it will contain
+[**AisSquidstat**](#class-definition-aissquidstat)’s member function getChannelInformation(). When the function returns it will contain
 useful information about the channel’s status, accessible through getter functions that have yet to
 be implemented.
