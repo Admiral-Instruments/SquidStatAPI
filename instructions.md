@@ -587,7 +587,7 @@ initialization list or use a pointer as the member instead.
 
 ## Class Definition: AisManualExperimentInfo
 
-Defined in **AisExperimentInfo.h**.
+Defined in **AisManualExperimentInfo.h**.
 
 Public member functions
 ```c++
@@ -601,8 +601,35 @@ int  getIndexOfCurrentRange() const;
 bool  getCellPosition() const;
  ~AisManualExperimentInfo();
 ```
+The [AisManualExperimentInfo](#class-definition-aismanualexperimentinfo) is use to start manual experiment. It is derived class of  [AisExperimentInfo](#class-definition-aisexperimentinfo). 
+
+### AisManualExperimentInfo Member Functions
+
+#### AisManualExperimentInfo
+
+```c++
+AisManualExperimentInfo(AisDeviceSetting* deviceSettings, AisSquidstatNotifier* notifier);
+```
+
+| Arguments  | Returns  |
+|---|---|
+| ``deviceSettings``   assign instrument serial name and channel <br> ``notifier`` assign notifier for manual experiment   | • Nothing  |
 
 
+This funcation is help to create the funcation experiment. It will take two argument. Pointer of [AisDeviceSetting](#class-definition-aisdevicesetting) is help to specify the instrument name and Channel number. Pointer of [AisSquidstatNotifier](#class-definition-aissquidstatnotifier) is help to call back method for manual experiment.  
+
+
+#### setManualExperimentinfo
+
+```c++
+void setManualExperimentinfo(double samplingInterval = 1, bool isCellOn = false, int indexOfCurrentRange = 0,bool isGalvanostaticMode = false,double CurrentOrVoltage = 0 );
+```
+
+| Arguments  | Returns  |
+|---|---|
+| ``samplingInterval`` set sampling interval <br> ``isCellOn`` set the cell position  <br>  isGalvanostaticMode`  | • Nothing  |
+
+This funcation is help to create the funcation experiment. It will take two argument. Pointer of [AisDeviceSetting](#class-definition-aisdevicesetting) is help to specify the instrument name and Channel number. Pointer of [AisSquidstatNotifier](#class-definition-aissquidstatnotifier) is help to call back method for manual experiment. 
 
 
 
