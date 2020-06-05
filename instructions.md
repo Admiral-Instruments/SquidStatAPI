@@ -2,6 +2,7 @@
 
 - [Squidstat API User's Guide](#squidstat-api-users-guide)
   - [Introduction](#introduction)
+  - [Class diagram](#class-diagram)
   - [Class Definition: AisSquidstatStarter](#class-definition-aissquidstatstarter)
     - [AisSquidstatStarter Member Functions](#aissquidstatstarter-member-functions)
       - [registerStart](#registerstart)
@@ -32,9 +33,13 @@
   - [Class Definition: AisSquidstatNotifier](#class-definition-aissquidstatnotifier)
   - [Class Definition: AisExperimentInfo](#class-definition-aisexperimentinfo)
   - [Class Definition: AisManualExperimentInfo](#class-definition-aismanualexperimentinfo)
+    - [AisManualExperimentInfo Member Functions](#aismanualexperimentinfo-member-functions)
+      - [AisManualExperimentInfo](#aismanualexperimentinfo)
+      - [setManualExperimentinfo](#setmanualexperimentinfo)
   - [Class Definition: AisDataStore](#class-definition-aisdatastore)
   - [Class definition: AisDeviceInfo](#class-definition-aisdeviceinfo)
   - [Class Definition: AisChannelInfo](#class-definition-aischannelinfo)
+
 
 ## Introduction
 The Squidstat API has two primary classes with which users can interact, and several helper classes that set and get information from the primary classes. All of the classes have the prefix “Ais,” for “Admiral Instruments” inside each class, not every public member is available to users, but only those with the macro ``SQUIDSTAT_DLL_SHARED_EXPORT`` in the signature.
@@ -78,6 +83,93 @@ The helper classes as well as a brief description are as follows:
 In order to use the Squidstat API, the user will need to include the following header files:
 * AisSquidstat.h
 * DataLabels.h
+
+## Class diagram
+
+```mermaid
+classDiagram
+      AisDeviceName <|-- AisChannelInfo
+      AisChannelNumber <|-- AisChannelInfo
+      AisDeviceName <|-- AisDeviceSetting
+      AisChannelNumber <|-- AisDeviceSetting
+      class AisDeviceName{
+          +getDeviceName():QString
+          -QString device
+      }
+      class AisChannelNumber{
+          -unsigned int _channel
+          +getChannelNumber():unsigned int
+      }
+      class AisSquidstatStarter{
+        +registerStart(void(*)()):void
+        +initApp():void 
+        +startApp():void
+        +execApp():int
+      }
+      class AisSquidstat{
+        +getInstance(void*):AisSquidstat*
+        +connectNewDeviceAt(QString):void
+        +LoadBuilderElements(QString):void
+        +UpdateCustomExperimentList():void
+        +getConnectedDevices(QStringList& ):AisStatus::FLAG
+        +getCustomExperiments(QStringList& ):AisStatus::FLAG
+        +getDeviceInformation(AisDeviceInfo* const):AisStatus::FLAG
+        +getChannelInformation(AisChannelInfo* const):AisStatus::FLAG
+        +setIRDropCompensation(AisDeviceSetting*, double, double):AisStatus::FLAG
+        +getIRDropCompensation(AisDeviceSetting*, double, double):AisStatus::FLAG
+        +setStabilityRange(AisDeviceSetting* const, QString ):AisStatus::FLAG
+        +getStabilityRangeList(AisDeviceSetting* const,QStringList&):AisStatus::FLAG
+        +getCurrentStabilityRange(AisDeviceSetting* const, QString &):AisStatus::FLAG
+        +startExperiment(AisExperimentInfo* ):AisStatus::FLAG
+        +stopExperiment(const QUuid ):AisStatus::FLAG
+        +pauseExperiment(const QUuid ):AisStatus::FLAG
+        +resumeExperiment(const QUuid ):AisStatus::FLAG
+        +startManualExperimentM(AisManualExperimentInfo* ):AisStatus::FLAG
+        +stopManualExperimentM(const QUuid ):AisStatus::FLAG
+        +setSamplingIntervalM(const QUuid, double ):AisStatus::FLAG
+        +setGalvanostaticModeM(const QUuid , double ):AisStatus::FLAG
+        +setPotentiostaticModeM(const QUuid , double ):AisStatus::FLAG
+        +setCellOnM(const QUuid , bool ):AisStatus::FLAG
+        +getCurrentRangeList(AisDeviceSetting* const, QStringList &):AisStatus::FLAG
+        +setCurrentRangeM(const QUuid id, int ):AisStatus::FLAG
+        +setAppDocumentDir(QString ):AisStatus::FLAG
+        +registerGlobalNotifier(AisSquidstatNotifier* const):AisStatus::FLAG
+        +closeApplication():AisStatus::FLAG
+	   }
+      class AisExperimentInfo{
+          -QString _customExpeiment;
+	        -AisDeviceSetting* _deviceSettings;
+	        -AisSquidstatNotifier* _notifier;
+          #QUuid experimentID;
+          +container:AisDataStore;
+          +getExperimentName():QString
+          +getExperimentID():QUuid
+          +getDeviceSetting():AisDeviceSetting*
+          +getNotifier():AisSquidstatNotifier*
+      }
+      AisExperimentInfo <|-- AisManualExperimentInfo
+      class AisManualExperimentInfo{
+         -getManualExpeirmentID():QUuid
+         -bool isGalvanostaticMode;
+         -double CurrentOrVoltage;
+         -double samplingInterval;
+         -bool isCellOn;
+         -int indexOfCurrentRange;
+         +setManualExperimentinfo()
+         +getSamplingInterval():double
+         +getGalvanostaticMode():double
+         +getCurrentOrVoltage():double
+         +getIndexOfCurrentRange():int
+         +getCellPosition():bool
+      }
+      class AisDeviceInfo{
+          -QString firmwareVersion
+	        -unsigned int numberOfChannel
+          +getFirmware():QString
+          +getNumberOfChannels():unsigned int
+      }      
+```
+
 
 ## Class Definition: AisSquidstatStarter
 Defined in **AisSquidstatStarter.h**.
