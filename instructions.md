@@ -45,7 +45,7 @@
             - [Misc Functions](#misc-functions)
     - [Class definition: AisDeviceInfo](#class-definition-aisdeviceinfo)
     - [Class Definition: AisChannelInfo](#class-definition-aischannelinfo)
-    - [Example Project](#example-project)
+    - [Example Project: Single Threaded Manual Experiment](#example-project-single-threaded-manual-experiment)
 
 ## Notes on Distributions
 API code was tested using QT 5.14.x, where we have verified it works best in. Included in the
@@ -910,4 +910,136 @@ useful information about the channel’s status, accessible through getter funct
 be implemented.
 
 
-## Example Project
+## Example Project: Single Threaded Manual Experiment
+
+This project's full source code can be found in the ManualExperimentDemo folder. We suggest using Qt
+Creator to build and launch the application using the instructions in the .pro file in the directory
+of the source code. Alternatively, qmake can be called directly on the .pro file.
+
+**main.cpp**
+
+The point of entry to our application will be a single thread which will be running a single manual
+experiment.
+```c++
+#include "AppThread.h"
+
+int main(int argc, char *argv[])
+{
+    // We are running a manual experiment on a single thread.
+	std::thread app(Dowork);
+	app.join();
+	return 0;
+}
+```
+
+**AppThread.h**
+
+This is where our worker used above is defined. This worker is responsible for
+the bulk of the execution. To fully understand what the worker is doing, SquidStateHandler should be
+sufficiently traced.
+
+```c++
+#include "AppThread.cpp"
+void Dowork() {
+	AisSquidstatStarter appStarter;
+    appStarter.initApp(); // Initializes the AisSquidstatStarter
+
+    /*
+     * SquidStateHandler can be traced from the constructor.
+     * What it does: ExpDataNotifier is registered as the global notifier.
+     * fillAppData is then called which is responsible for loading: the list
+     * of custom experiments the user has saved to their documents folder;
+     * the builder elements dynamic libraries which are constitutes of the
+     * custom  experiments; and the Squidstat device which is connected in
+     * some usb port (the port may be specified, but is not required).
+     * Then the global notifier ExpDataNotifier is responsible for starting the
+     * manual experiment after it registers that a device has connected to the
+     * SquidStatHandler.
+     */
+    SquidStateHandler start;
+
+    appStarter.execApp(); // Must be called on same thread as initApp
+}
+```
+
+**SquidStateHandler.cpp**
+
+SquidStateHandler is mostly full of helper routines to complement the running of
+simple manual experiment. Thread timers are used to give some guidance on how one might automate
+pausing and resuming the Squidstat device. Routines used for saving csv files are provided for
+additional guidance for post-experiment analysis.
+
+```c++
+void SquidStateHandler::startManualExperiment() {
+    qDebug() << "Manual experiment started";
+
+	auto expInfoData = expSelector->getNextExpInfo();
+
+	if ( expInfoData.acFilePath.isEmpty() ||
+		expInfoData.dcFilePath.isEmpty()) {
+		handler->closeApplication();
+		return;
+	}
+
+	auto deviceName = DEVICE_NAME;
+	auto channelNumber = 0;
+
+	if (!connectedDevice.contains(deviceName)) {
+		qDebug() << deviceName << "is not found";
+		return;
+	}
+
+	deviceSettings = new AisDeviceSetting(deviceName, channelNumber);
+	exp = new Experiment(deviceSettings, eventHandler);
+	exp->createACDataFile(expInfoData.acFilePath);
+	exp->createDCDataFile(expInfoData.dcFilePath);
+
+	auto errorFlag = handler->startManualExperimentM(exp->getManualExperiment());
+
+	if (errorFlag != AisStatus::NO_ERROR) {
+        delete exp;
+		delete deviceSettings;
+	}
+
+	startAlltimers();
+}
+```
+
+**ExpDataNotifier.cpp**
+
+The ExpDataNotifier object is the connection between your program and the device.
+When the notifier recieves a signal from the device, it will execute a
+corresponding function. For example, if the device signals that DC data is to arrive,
+ExpDataNotifer::readDCExperimentData is called and from the below definition, the handler executes
+the code to save the DC data.
+
+```c++
+
+/*
+ *  The Squidstat Device outputs signals which are caught by the ExpDataNotifier
+ *  which then is responsible for instructing the handler to execute
+ *  code corresponding to the appropriate output by the device.
+*/
+void ExpDataNotifier::readDCExperimentData(QUuid id) {
+    handler->DCDataExperiment(id); // saves DC data to DC data file.
+}
+void ExpDataNotifier::readACExperimentData(QUuid id) {
+    handler->ACDataExperiment(id); // saves AC data to AC data file
+                                   // (not executed in manual experiments)
+}
+void ExpDataNotifier::experimentStopped(QUuid id) {
+	handler->StopExperiment(id);
+}
+void ExpDataNotifier::experimentPaused(QUuid id) {
+	handler->PauseExperiment(id);
+}
+void ExpDataNotifier::experimentResumed(QUuid id) {
+	handler->ResumeExperiment(id);
+}
+void ExpDataNotifier::instrumentReadyToUse(QString newDevice) {
+    handler->addInstrumnets(newDevice);
+}
+void ExpDataNotifier::instrumentDisconnected(QString removeDevice) {
+    handler->instrumentRemove(removeDevice);
+}
+```
