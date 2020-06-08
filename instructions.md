@@ -1,6 +1,7 @@
 # Squidstat API User's Guide
 
 - [Squidstat API User's Guide](#squidstat-api-users-guide)
+    - [Notes on Distributions](#notes-on-distributions)
     - [Introduction](#introduction)
     - [Class diagram](#class-diagram)
     - [Class Definition: AisSquidstatStarter](#class-definition-aissquidstatstarter)
@@ -37,9 +38,20 @@
             - [AisManualExperimentInfo](#aismanualexperimentinfo)
             - [setManualExperimentinfo](#setmanualexperimentinfo)
     - [Class Definition: AisDataStore](#class-definition-aisdatastore)
+            - [getMinValue](#getminvalue)
+            - [getMaxValue](#getmaxvalue)
+            - [getAllDataPoints](#getalldatapoints)
+            - [getAllStringDataPoints](#getallstringdatapoints)
+            - [Misc Functions](#misc-functions)
     - [Class definition: AisDeviceInfo](#class-definition-aisdeviceinfo)
     - [Class Definition: AisChannelInfo](#class-definition-aischannelinfo)
+    - [Example Project](#example-project)
 
+## Notes on Distributions
+API code was tested using QT 5.14.x, where we have verified it works best in. Included in the
+distributions of API for Windows and Linux are the necessary files from QT 5.14.2 to run the example
+projects. Mac users will need to manually install QT  5.14.x to run these same projects. The QT online
+installer can be found [here](https://www.qt.io/download-open-source?hsCtaTracking=9f6a2170-a938-42df-a8e2-a9f0b1d6cdce%7C6cb0de4f-9bb5-4778-ab02-bfb62735f3e5).
 
 ## Introduction
 The Squidstat API has two primary classes with which users can interact, and several helper classes that set and get information from the primary classes. All of the classes have the prefix “Ais,” for “Admiral Instruments” inside each class, not every public member is available to users, but only those with the macro ``SQUIDSTAT_DLL_SHARED_EXPORT`` in the signature.
@@ -69,14 +81,14 @@ The helper classes as well as a brief description are as follows:
    * Holds pointers to an [**AisDeviceSetting**](#class-definition-aisdevicesetting) object and an [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier) object in
       order to pass them to the member function [``startManualExperiment()``](#startexperiment).
       It also holds the container for the manual experimental data. It is derived form [**AisExperimentInfo**](#class-definition-aisexperimentinfo)
-* **AisDataStore**
+* [**AisDataStore**](#class-definition-aisdatastore)
     * Objects each hold one column’s worth of data (data from a single experimental variable, e.g.
       current, voltage, timestamp, etc.). Several [**AisDataStore**](#class-definition-aisdatastore) objects comprise a container for a
       given experiment, stored inside [**AisExperimentInfo**](#class-definition-aisexperimentinfo).
-* **AisDeviceInfo**
+* [**AisDeviceInfo**](#class-definition-aisdeviceinfo)
     * An object that holds information about the firmware version and number of channels of a
       given device.
-* **AisChannelInfo**
+* [**AisChannelInfo**](#class-definition-aischannelinfo)
     * An object that in future API updates will contain information about the channel status.
 
 
@@ -399,9 +411,9 @@ AisStatus::FLAG getDeviceInformation(AisDeviceInfo* const);
 | • A pointer to an AisDeviceInfo object. The object should have the device name set to the device in question before calling getDeviceInformation. Upon return, the user can check the specified device’s firmware version and the number of channels. |  • AisStatus::NO_ERROR if the specified device is found. <br> • AisStatus::HANDLER_NOT_FOUND if the specified device is not connected.|
 
 This function allow the user to check the firmware version and the number of channels a given device
-has. The user creates an **AisDeviceInfo** object, specifying the device name/serial number in the
+has. The user creates an [**AisDeviceInfo**](#class-definition-aisdeviceinfo) object, specifying the device name/serial number in the
 constructor. Then the user passes the pointer to that object to getDeviceInformation(). Upon return,
-the user can call the **AisDeviceInfo** object’s getFirmware() and getNumberOfChannels() member
+the user can call the [**AisDeviceInfo**](#class-definition-aisdeviceinfo) object’s getFirmware() and getNumberOfChannels() member
 functions.
 
 #### getChannelInformation
@@ -413,7 +425,7 @@ AisStatus::FLAG getChannelInformation(AisChannelInfo* const);
 |---|---|
 | • A pointer to an AisChannelInfo object. The object should have the device name and channel number before calling getChannelInformation.  |  • AisStatus::NO_ERROR if the specified device is found. <br> • AisStatus::HANDLER_NOT_FOUND if the specified device is not connected. <br> • AisStatus::INVALID_CHANNEL if the specified channel falls outside the valid range for the instrument. |
 
-In this release of the Squidstat API, the **AisChannelInfo** object is not yet useful to the user. In
+In this release of the Squidstat API, the [**AisChannelInfo**](#class-definition-aischannelinfo) object is not yet useful to the user. In
 future versions users will be able to specify the desired instrument and channel and get information
 on the channel’s status using this function, e.g. whether the instrument is idle, paused, or running
 an experiment.
@@ -669,8 +681,8 @@ AisDataMap container;
 
 The [**AisExperimentInfo**](#class-definition-aisexperimentinfo) class serves two purposes: to pass the necessary info to
 [**AisSquidstat**](#class-definition-aissquidstat)::startExperiment() and to give the user access to the experimental data, through the
-**AisDataMap** “container” member. AisDataMap is a typedef for QMap<QString, **AisDataStore**>. For more
-information, see the documentation for [**AisSquidstat**](#class-definition-aissquidstat)::startExperiment() and for the **AisDataStore**
+**AisDataMap** “container” member. AisDataMap is a typedef for QMap<QString, [**AisDataStore**](#class-definition-aisdatastore)>. For more
+information, see the documentation for [**AisSquidstat**](#class-definition-aissquidstat)::startExperiment() and for the [**AisDataStore**](#class-definition-aisdatastore)
 class.
 
 Each [**AisExperimentInfo**](#class-definition-aisexperimentinfo) object also stores a QUuid object (which holds an UUID) associated with a
@@ -692,14 +704,14 @@ Public member functions
 
 AisManualExperimentInfo(AisDeviceSetting* deviceSettings, AisSquidstatNotifier* notifier);
 void setManualExperimentinfo(double samplingInterval = 1, bool isCellOn = false, int indexOfCurrentRange = 0,bool isGalvanostaticMode = false,double CurrentOrVoltage = 0 );
-double  getSamplingInterval() const;
-bool  getGalvanostaticMode() const;
-double  getCurrentOrVoltage() const;
-int  getIndexOfCurrentRange() const;
-bool  getCellPosition() const;
- ~AisManualExperimentInfo();
+double getSamplingInterval() const;
+bool getGalvanostaticMode() const;
+double getCurrentOrVoltage() const;
+int getIndexOfCurrentRange() const;
+bool getCellPosition() const;
+~AisManualExperimentInfo();
 ```
-The [AisManualExperimentInfo](#class-definition-aismanualexperimentinfo) is use to start manual experiment. It is derived class of  [AisExperimentInfo](#class-definition-aisexperimentinfo).
+The [**AisManualExperimentInfo**](#class-definition-aismanualexperimentinfo) is use to start manual experiment. It is derived class of  [**AisExperimentInfo**](#class-definition-aisexperimentinfo).
 
 ### AisManualExperimentInfo Member Functions
 
@@ -756,11 +768,11 @@ int numberOfDataPoints();
 void removeAllDataPoints();
 ```
 The [**AisExperimentInfo**](#class-definition-aisexperimentinfo) member function “container” is an **AisDataMap**, which is a typedef for
-QMap<QString, **AisDataStore**>. Each **AisDataStore** object inside an **AisDataMap** holds a given column of
+QMap<QString, [**AisDataStore**](#class-definition-aisdatastore)>. Each [**AisDataStore**](#class-definition-aisdatastore) object inside an **AisDataMap** holds a given column of
 data, stored as a key-value pair. The list of keys is given in DataLabels.h, which is organized into
 three categories: “DC data keys,” “AC data keys,” and “Common keys.”
 
-Each **AisDataStore** object contains a list of data, either of text or of doubles. The first type of
+Each [**AisDataStore**](#class-definition-aisdatastore) object contains a list of data, either of text or of doubles. The first type of
 data is accessed by the DC data keys. This is data sampled in the time domain, during a constant
 potential or constant current interval, a current or potential sweep, a current or potential pulse
 train, a constant power or constant resistance interval, or an open circuit interval. The second
@@ -774,7 +786,7 @@ of one data point generated per AC sample or DC sample, in “Common keys” cat
 QString generated at the beginning of every experiment “substep.” It is not always intuitive to the
 user how many substeps comprise an experiment; therefore, it is not straightforward to correlate the
 correct step name and number with a given AC or DC data point. The recommended strategy is to look
-up the latest step name and number in the **AisDataStore** list whenever an AC or DC data point arrives.
+up the latest step name and number in the [**AisDataStore**](#class-definition-aisdatastore) list whenever an AC or DC data point arrives.
 For example:
 
 ```c++
@@ -796,11 +808,44 @@ member object, refer to the “Squidstat API Sample Project Documentation.”
 
 Here is a brief description of each of the public member functions:
 
-* getMinValue() returns the most negative data point (only for **AisDataStore** objects containing
+* getMinValue() returns the most negative data point (only for [**AisDataStore**](#class-definition-aisdatastore) objects containing
   qreal (double) data)
-* getMaxValue() returns the most positive data point (only for **AisDataStore** objects containing qreal (double) data)
-* getAllDataPoints() returns a QList<qreal> of sampled data (only for **AisDataStore** objects containing qreal (double) data). For more information on the QList class, see https://doc.qt.io/qt-5/qlist.html.
-* getAllStringDataPoints() returns a QStringList of text data (only for **AisDataStore** objects containing QString data). For more information about the QStringList class, see https://doc.qt.io/qt- 5/qstringlist.html.
+#### getMinValue
+```c++
+void getMinValue();
+```
+
+| Arguments  | Returns  |
+|---|---|
+| • None  |  • qreal, the furthest left data point on the ordered real number line on the condition that the **AisDataStore** contains only qreal (double) data. |
+
+#### getMaxValue
+```c++
+void getMaxValue()
+```
+| Arguments  | Returns  |
+|---|---|
+| • None  |  • qreal, the furthest right data point on the ordered real number line on the condition that the **AisDataStore** contains only qreal (double) data. |
+
+#### getAllDataPoints
+```c++
+QList<qreal> getAllDataPoints();
+```
+| Arguments  | Returns  |
+|---|---|
+| • None  |  • QList<qreal>, all of the data points in a list, on the condition that **AisDataStore** contains only qreal (double) data.|
+
+#### getAllStringDataPoints
+```c++
+QStringList getAllStringDataPoints();
+```
+| Arguments  | Returns  |
+|---|---|
+| • None  |  • QStringList of text data on the condition that **AisDataStore** contains QString data. For more information about the QStringList class, see https://doc.qt.io/qt- 5/qstringlist.html.|
+
+#### Misc Functions
+These functions are provided for convenience and do as they say on the tin.
+
 * bool isDataListEmpty() returns true if there is no qreal (double) data in the list.
 * bool isStringDataListEmpty() returns true if there is no text data in the list.
 * firstDataPoint() returns the first data point in the qreal (double) list.
@@ -829,13 +874,13 @@ Inherited member functions:
 QString getDeviceName();
 ```
 
-The **AisDeviceInfo** class is used to get the firmware information and number of channels for a
-specified device. Create an **AisDeviceInfo** object by passing the device name to the constructor. Then
-pass a pointer to the **AisDeviceInfo** object to [**AisSquidstat**](#class-definition-aissquidstat)’s member function getDeviceInformation().
+The [**AisDeviceInfo**](#class-definition-aisdeviceinfo) class is used to get the firmware information and number of channels for a
+specified device. Create an [**AisDeviceInfo**](#class-definition-aisdeviceinfo) object by passing the device name to the constructor. Then
+pass a pointer to the [**AisDeviceInfo**](#class-definition-aisdeviceinfo) object to [**AisSquidstat**](#class-definition-aissquidstat)’s member function getDeviceInformation().
 When the function returns you can use getFirmware() to read the firmware version (stored as a
 QString) and getNumberOfChannels() to determine the number of channels the device has.
 
-Note that no default constructor exists for **AisDeviceInfo**, so if you use this class as a member
+Note that no default constructor exists for [**AisDeviceInfo**](#class-definition-aisdeviceinfo), so if you use this class as a member
 object inside a custom class, then you will need to either include its constructor in an
 initialization list or use a pointer as the member instead.
 
@@ -856,10 +901,13 @@ QString getDeviceName();
 unsigned int getChannelNumber();
 ```
 
-The **AisChannelInfo** class will be used in future Squidsat API releases to get the status of a
-specified channel on a device. As of this release, however, **AisChannelInfo** does not contain any
-useful information. This class will be used in the following way: create an **AisChannelInfo** object by
+The [**AisChannelInfo**](#class-definition-aischannelinfo) class will be used in future Squidsat API releases to get the status of a
+specified channel on a device. As of this release, however, [**AisChannelInfo**](#class-definition-aischannelinfo) does not contain any
+useful information. This class will be used in the following way: create an [**AisChannelInfo**](#class-definition-aischannelinfo) object by
 passing the device name and channel number to the constructor. Then pass a pointer to this object to
 [**AisSquidstat**](#class-definition-aissquidstat)’s member function getChannelInformation(). When the function returns it will contain
 useful information about the channel’s status, accessible through getter functions that have yet to
 be implemented.
+
+
+## Example Project
