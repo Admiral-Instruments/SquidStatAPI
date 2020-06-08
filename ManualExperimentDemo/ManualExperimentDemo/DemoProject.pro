@@ -1,6 +1,5 @@
 TEMPLATE = app
 CONFIG += console c++11
-QT += core widgets gui serialport opengl concurrent network
 
 
 INCLUDEPATH += . \
@@ -12,6 +11,8 @@ INCLUDEPATH += . \
                ./../Admiral/QtDLL/include
 
 win32{
+    CONFIG -= app_bundle
+    CONFIG -= qt
     CONFIG(debug, debug|release){
         #debug
         LIBS += -L"./../Admiral/SquidStatDLL/Debug/"   \
@@ -55,6 +56,7 @@ win32{
 
 
 macx{
+    QT += core
     CONFIG(debug, debug|release){
         #debug
         LIBS += -L"./../Admiral/SquidStatDLL/Debug/"   \
@@ -71,9 +73,11 @@ macx{
 }
 
 unix:!macx {
-CONFIG(debug, debug|release){
-    #debug
-    LIBS += -L"./../Admiral/SquidStatDLL/Debug/"   \
+    CONFIG -= app_bundle
+    CONFIG -= qt
+    CONFIG(debug, debug|release){
+        #debug
+        LIBS += -L"./../Admiral/SquidStatDLL/Debug/"   \
             "./../Admiral/SquidStatDLL/Debug/libSquidstatLibrary.so.1" \
             "./../Admiral/SquidStatDLL/Debug/libSquidStat_DLL.so.1" \
             "./../Admiral/QtDLL/Debug/libQt5Core.so.5" \
@@ -91,8 +95,8 @@ CONFIG(debug, debug|release){
             "./../Admiral/QtDLL/Debug/libicuuc.so.56" \
              -lpthread
     }else {
-    #release
-    LIBS += -L"./../Admiral/SquidStatDLL/Release/"   \
+        #release
+        LIBS += -L"./../Admiral/SquidStatDLL/Release/"   \
             "./../Admiral/SquidStatDLL/Release/libSquidstatLibrary.so.1" \
             "./../Admiral/SquidStatDLL/Release/libSquidStat_DLL.so.1" \
             "./../Admiral/QtDLL/Release/libQt5Core.so.5" \
