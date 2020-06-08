@@ -914,7 +914,11 @@ be implemented.
 
 This project's full source code can be found in the ManualExperimentDemo folder. We suggest using Qt
 Creator to build and launch the application using the instructions in the .pro file in the directory
-of the source code. Alternatively, qmake can be called directly on the .pro file.
+of the source code. Alternatively, qmake can be called directly on the .pro file. Before running the
+executable, ensure the `#define` constants in **SquidStateHandler.cpp** have been given absolute
+paths to your appropriate documents folder (where custom experiments are kept in .json form), and
+where the dynamic libraries for the builder elements reside. Lastly, create a folder with the name
+"csv" on the desktop.
 
 **main.cpp**
 
