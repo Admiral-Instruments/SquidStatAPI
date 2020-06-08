@@ -4,8 +4,8 @@
 
 #define SQUIDSTAT_PORT_NAME ""
 #define DEVICE_NAME	"Plus1209"
-#define DOCUMENT_DIR "/Users/coltor/Documents/Admiral Instruments"
-#define PATH_TO_SQUIDSTAT_EXPERIMENT_TILES "/Users/coltor/Dev/LabviewApplication/Sample_Projects/ManualExperimentDemo/Admiral/SquidStatDLL/Release/elements"
+#define DOCUMENT_DIR "/home/admiral/Documents"
+#define PATH_TO_SQUIDSTAT_EXPERIMENT_TILES "/home/admiral/SquidStatAPI/ManualExperimentDemo/Admiral/SquidStatDLL/Release/elements"
 
 SquidStateHandler::SquidStateHandler()
 {
