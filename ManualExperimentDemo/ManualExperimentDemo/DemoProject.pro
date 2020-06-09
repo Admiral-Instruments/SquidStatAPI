@@ -16,40 +16,24 @@ win32{
     CONFIG(debug, debug|release){
         #debug
         LIBS += -L"./../Admiral/SquidStatDLL/Debug/"   \
-            "./../Admiral/SquidStatDLL/Debug/libSquidstatLibrary.1.dll" \
-            "./../Admiral/SquidStatDLL/Debug/libSquidStat_DLL.1.dll" \
-            "./../Admiral/QtDLL/Debug/libQt5Core.5.dll" \
-            "./../Admiral/QtDLL/Debug/libQt5DBus.5.dll" \
-            "./../Admiral/QtDLL/Debug/libQt5EglFSDeviceIntegration.5.dll" \
-            "./../Admiral/QtDLL/Debug/libQt5Gui.5.dll" \
-            "./../Admiral/QtDLL/Debug/libQt5Network.5.dll" \
-            "./../Admiral/QtDLL/Debug/libQt5SerialPort.5.dll" \
-            "./../Admiral/QtDLL/Debug/libQt5Svg.5.dll" \
-            "./../Admiral/QtDLL/Debug/libQt5WaylandClient.5.dll" \
-            "./../Admiral/QtDLL/Debug/libQt5Widgets.5.dll" \
-            "./../Admiral/QtDLL/Debug/libQt5XcbQpa.5.dll" \
-            "./../Admiral/QtDLL/Debug/libicudata.56.dll" \
-            "./../Admiral/QtDLL/Debug/libicui18n.56.dll" \
-            "./../Admiral/QtDLL/Debug/libicuuc.56.dll" \
+            "./../Admiral/SquidStatDLL/Debug/SquidstatLibrary.dll" \
+            "./../Admiral/SquidStatDLL/Debug/SquidStat_DLL.dll" \
+            "./../Admiral/QtDLL/Debug/Qt5Core.dll" \
+            "./../Admiral/QtDLL/Debug/Qt5Gui.dll" \
+            "./../Admiral/QtDLL/Debug/Qt5Quick.dll" \
+            "./../Admiral/QtDLL/Debug/Qt5SerialPort.dll" \
+            "./../Admiral/QtDLL/Debug/Qt5Widgets.dll" \
              -lpthread
     }else {
         #release
         LIBS += -L"./../Admiral/SquidStatDLL/Release/"   \
-            "./../Admiral/SquidStatDLL/Release/libSquidstatLibrary.1.dll" \
-            "./../Admiral/SquidStatDLL/Release/libSquidStat_DLL.1.dll" \
-            "./../Admiral/QtDLL/Release/libQt5Core.5.dll" \
-            "./../Admiral/QtDLL/Release/libQt5DBus.5.dll" \
-            "./../Admiral/QtDLL/Release/libQt5EglFSDeviceIntegration.5.dll" \
-            "./../Admiral/QtDLL/Release/libQt5Gui.5.dll" \
-            "./../Admiral/QtDLL/Release/libQt5Network.5.dll" \
-            "./../Admiral/QtDLL/Release/libQt5SerialPort.5.dll" \
-            "./../Admiral/QtDLL/Release/libQt5Svg.5.dll" \
-            "./../Admiral/QtDLL/Release/libQt5WaylandClient.5.dll" \
-            "./../Admiral/QtDLL/Release/libQt5Widgets.5.dll" \
-            "./../Admiral/QtDLL/Release/libQt5XcbQpa.5.dll" \
-            "./../Admiral/QtDLL/Release/libicudata.56.dll" \
-            "./../Admiral/QtDLL/Release/libicui18n.56.dll" \
-            "./../Admiral/QtDLL/Release/libicuuc.56.dll" \
+            "./../Admiral/SquidStatDLL/Release/SquidstatLibrary.dll" \
+            "./../Admiral/SquidStatDLL/Release/SquidStat_DLL.dll" \
+            "./../Admiral/QtDLL/Release/Qt5Core.dll" \
+            "./../Admiral/QtDLL/Release/Qt5Gui.dll" \
+            "./../Admiral/QtDLL/Release/Qt5Quick.dll" \
+            "./../Admiral/QtDLL/Release/Qt5SerialPort.dll" \
+            "./../Admiral/QtDLL/Release/Qt5Widgets.dll" \
             -lpthread
     }
 }
