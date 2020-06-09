@@ -1,52 +1,5 @@
 # Squidstat API User's Guide
 
-- [Squidstat API User's Guide](#squidstat-api-users-guide)
-    - [Notes on Distributions](#notes-on-distributions)
-    - [Introduction](#introduction)
-    - [Class diagram](#class-diagram)
-    - [Class Definition: AisSquidstatStarter](#class-definition-aissquidstatstarter)
-        - [AisSquidstatStarter Member Functions](#aissquidstatstarter-member-functions)
-            - [registerStart](#registerstart)
-            - [initApp](#initapp)
-            - [startApp](#startapp)
-            - [execApp](#execapp)
-    - [Class Definition: AisSquidstat](#class-definition-aissquidstat)
-        - [AisSquidstat Member Functions](#aissquidstat-member-functions)
-            - [getInstance](#getinstance)
-            - [connectNewDeviceAt](#connectnewdeviceat)
-            - [LoadBuilderElements](#loadbuilderelements)
-            - [UpdateCustomExperimentList](#updatecustomexperimentlist)
-            - [getConnectedDevices](#getconnecteddevices)
-            - [getCustomExperiments](#getcustomexperiments)
-            - [getDeviceInformation](#getdeviceinformation)
-            - [getChannelInformation](#getchannelinformation)
-            - [setIRDropCompensation](#setirdropcompensation)
-            - [getIRDropCompensation](#getirdropcompensation)
-            - [setStabilityRange](#setstabilityrange)
-            - [getStabilityRangeList](#getstabilityrangelist)
-            - [getCurrentStabilityRange](#getcurrentstabilityrange)
-            - [startExperiment](#startexperiment)
-            - [stopExperiment](#stopexperiment)
-            - [setAppDocumentDir](#setappdocumentdir)
-            - [registerGlobalNotifier](#registerglobalnotifier)
-            - [closeApplication](#closeapplication)
-    - [Class Definition: AisDeviceSetting](#class-definition-aisdevicesetting)
-    - [Class Definition: AisSquidstatNotifier](#class-definition-aissquidstatnotifier)
-    - [Class Definition: AisExperimentInfo](#class-definition-aisexperimentinfo)
-    - [Class Definition: AisManualExperimentInfo](#class-definition-aismanualexperimentinfo)
-        - [AisManualExperimentInfo Member Functions](#aismanualexperimentinfo-member-functions)
-            - [AisManualExperimentInfo](#aismanualexperimentinfo)
-            - [setManualExperimentinfo](#setmanualexperimentinfo)
-    - [Class Definition: AisDataStore](#class-definition-aisdatastore)
-            - [getMinValue](#getminvalue)
-            - [getMaxValue](#getmaxvalue)
-            - [getAllDataPoints](#getalldatapoints)
-            - [getAllStringDataPoints](#getallstringdatapoints)
-            - [Misc Functions](#misc-functions)
-    - [Class definition: AisDeviceInfo](#class-definition-aisdeviceinfo)
-    - [Class Definition: AisChannelInfo](#class-definition-aischannelinfo)
-    - [Example Project: Single Threaded Manual Experiment](#example-project-single-threaded-manual-experiment)
-
 ## Notes on Distributions
 API code was tested using QT 5.14.x, where we have verified it works best in. Included in the
 distributions of API for Windows and Linux are the necessary files from QT 5.14.2 to run the example
@@ -96,12 +49,12 @@ In order to use the Squidstat API, the user will need to include the following h
 * AisSquidstat.h
 * DataLabels.h
 
-## Class diagram
+## Class Diagram
 
 ![UML diagram](mermaid.png)
 
 
-## Class Definition: AisSquidstatStarter
+## Class: AisSquidstatStarter
 Defined in **AisSquidstatStarter.h**.
 
 Public member functions:
@@ -175,9 +128,9 @@ void execApp();
 This function starts the control loop that polls for events related to Squidstat hardware activity.
 It will handle all of the background processes that communicate with the instruments, and it also
 fires the callbacks in [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier). This function will not return until
-**AisSquidstat::closeApplication()** is called.
+closeApplication() is called.
 
-## Class Definition: AisSquidstat
+## Class: AisSquidstat
 
 Defined in **AisSquidstat.h**.
 
@@ -237,7 +190,7 @@ static AisSquidstat* getInstance(void* mainWindow = nullptr);
 
 
 Note that this is a static member function. It provides a pointer to the object created by
-[**AisSquidstatStarter**](#class-definition-aissquidstatstarter)::[``initApp()``](#initapp). This pointer gives access to the user to control connected
+[``initApp()``](#initapp). This pointer gives access to the user to control connected
 instruments.
 
 #### connectNewDeviceAt
@@ -253,7 +206,7 @@ at which to search. If this argument is omitted, then the software will poll all
 ports. Any non-Squidstat devices at available COM ports will receive a “ping,” and the software will
 wait until a response has timed out before continuing on to the next device on the list. Whenever a
 Squidstat device is found, calibration data will automatically be downloaded if necessary, and the
-[**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier)::instrumentReadyToUse() callback will be fired.
+instrumentReadyToUse() callback will be fired.
 
 #### LoadBuilderElements
 ```c++
@@ -288,7 +241,7 @@ void UpdateCustomExperimentList();
 This function is useful for users who want to add or edit custom experiment files on-the-fly. Each
 custom experiment is stored as a JSON file, the text of which can be read and modified outside of
 the Squidstat User Interface Experiment Builder. However, the JSON files are parsed when
-[**AisSquidstatStarter**](#class-definition-aissquidstatstarter)::[``initApp()``](#initapp) is called. In order to refresh the list for new or modified
+[``initApp()``](#initapp) is called. In order to refresh the list for new or modified
 files, UpdateCustomExperimentList() must be called. Note that for existing JSON files that are
 modified and not renamed, the API will not recognize any changes to the file unless the UUID field
 inside the file is changed. Users can generate a new UUID using the class QUuid, which is included
@@ -306,9 +259,9 @@ AisStatus::FLAG getConnectedDevices(QStringList& connectedDevices);
 
 This function provides a list of serial numbers/device names of the Squidstat devices connected to
 the software. Note that the API can only interact with and open connections that are closed when
-[**AisSquidstatStarter**](#class-definition-aissquidstatstarter)::[``initApp()``](#initapp) is called, and so open instances of the Squidstat User Interface or
+[``initApp()``](#initapp) is called, and so open instances of the Squidstat User Interface or
 other programs running the Squidstat API will interfere with device connectivity. The Squidstat API
-searches for newly connected devices only when the [**AisSquidstat**](#class-definition-aissquidstat)::connectNewDeviceAt() function
+searches for newly connected devices only when the connectNewDeviceAt() function
 is called. For more information about the QStringList class, see
 https://doc.qt.io/qt-5/qstringlist.html.
 
@@ -423,7 +376,8 @@ about the QStringList class, see https://doc.qt.io/qt-5/qstringlist.html.
 
 #### getCurrentStabilityRange
 ```c++
-AisStatus::FLAG getCurrentStabilityRange(AisDeviceSetting* const, QString &currentRange);
+AisStatus::FLAG getCurrentStabilityRange(AisDeviceSetting* const,
+ QString &currentRange);
 ```
 
 | Arguments  | Returns |
@@ -451,7 +405,8 @@ as the experiment name into the constructor. A pointer to an object that impleme
 
 ```c++
 mDeviceSetting = new AisDeviceSetting(_InstrumentName, _channelNum);
-mExperimentInfo = new AisExperimentInfo(mDeviceSetting, _ExperimentName, this);
+mExperimentInfo = new AisExperimentInfo(mDeviceSetting,
+ _ExperimentName, this);
 ```
 
 This code snippet is inside a member function of a class that inherits from [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier)
@@ -485,7 +440,7 @@ This function is used to set the location of the Squidstat calibration files and
 files are stored. The default location is in “<Documents directory>/Admiral Instruments”, and this
 is the location that the Squidstat User Interface application uses. However, this function allows
 the user to specify an alternate location. Note that this function must be called before calling the
-[**AisSquidstat**](#class-definition-aissquidstat)::connectNewDeviceAt() function because connectNewDeviceAt() reads and writes from the
+connectNewDeviceAt() function because connectNewDeviceAt() reads and writes from the
 calibration file directory.
 
 #### registerGlobalNotifier
@@ -510,12 +465,12 @@ void closeApplication();
 |---|---|
 | • None  |  • Void |
 
-This function stops the [**AisSquidstatStarter**](#class-definition-aissquidstatstarter)::execApp() loop and causes it to return. Device
+This function stops the execApp() loop and causes it to return. Device
 connections are closed, and any experiments still running are stopped, and API background processes
 are stopped. In Qt projects, this function will close the entire application since it calls
 QCoreApplication::quit(), and therefore this function may not be appropriate to use for Qt Projects.
 
-## Class Definition: AisDeviceSetting
+## Class: AisDeviceSetting
 
 Defined in **AisDeviceSetting.h**.
 
@@ -533,7 +488,7 @@ unsigned int getChannelNumber();
 ```
 
 [**AisDeviceSetting**](#class-definition-aisdevicesetting) objects are used directly or indirectly to specify an instrument and channel number
-when calling commands with the [**AisSquidstat**](#class-definition-aissquidstat) class. For example, setStabilityRange and
+when calling commands with the [**AisSquidstat**](#class-definition-aissquidstat) class. For example, setStabilityRange() and
 setIRDropCompensation() pass an [**AisDeviceSetting**](#class-definition-aisdevicesetting) object pointer as an argument, and
 startExperiment() passes an [**AisExperimentInfo**](#class-definition-aisexperimentinfo) object pointer, which contains an [**AisDeviceSetting**](#class-definition-aisdevicesetting)
 object pointer as one of its members.
@@ -543,7 +498,7 @@ so if you use this class as a member object inside a custom class, then you will
 include its constructor in an initialization list or use a pointer as the member instead.
 
 
-## Class Definition: AisSquidstatNotifier
+## Class: AisSquidstatNotifier
 
 Defined in **AisSquidstatNotifier.h**.
 
@@ -552,20 +507,20 @@ Protected functions:
 ```c++
 virtual void instrumentReadyToUse(QString);
 virtual void instrumentDisconnected(QString);
-virtual void readDCExperimentData(QUuid) = 0;
-virtual void readACExperimentData(QUuid) = 0;
-virtual void experimentStopped(QUuid) = 0;
-virtual void experimentPaused(QUuid) = 0;
-virtual void experimentResumed(QUuid) = 0;
+virtual void readDCExperimentData(QUuid);
+virtual void readACExperimentData(QUuid);
+virtual void experimentStopped(QUuid);
+virtual void experimentPaused(QUuid);
+virtual void experimentResumed(QUuid);
 ```
 
 The first two functions are callbacks used for “general” events: when instruments connect and
 disconnect from the software. The callback instrumentReadyToUse() fires when an instrument
-successfully connects to the software after [**AisSquidstat**](#class-definition-aissquidstat)::connectNewDeviceAt() is called. The
+successfully connects to the software after connectNewDeviceAt() is called. The
 callback instrumentDisconnected() fires whenever an instrument disconnects from the software. Both
 of these callbacks pass the name of the instrument as an argument. In order to use these callbacks,
 the [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier) object that implements these virtual functions must be registered using
-[**AisSquidstat**](#class-definition-aissquidstat)::registerGlobalNotifier().
+registerGlobalNotifier().
 
 The last five functions are callbacks used for events that happen during the course of an
 experiment. The callback readDCExperimentData() fires when DC data is sampled (voltage and current
@@ -580,12 +535,12 @@ experiment has fired the callback.
 In order to use these experiment-related callbacks, [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier) object that implements
 these virtual functions must be registered by creating an** AisExperimentInfo** object. This object will
 take a pointer to the [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier) object in its constructor. Then a pointer to the
-[**AisExperimentInfo**](#class-definition-aisexperimentinfo) object is passed to [**AisSquidstat**](#class-definition-aissquidstat)::StartExperiment().
+[**AisExperimentInfo**](#class-definition-aisexperimentinfo) object is passed to StartExperiment().
 
 Refer to the “Squidstat API Sample Project Documentation” manual for more explanation on how the
 [**AisSquidstatNotifier**](#class-definition-aissquidstatnotifier) class and callbacks are used.
 
-## Class Definition: AisExperimentInfo
+## Class: AisExperimentInfo
 
 Defined in **AisExperimentInfo.h**.
 
@@ -606,9 +561,9 @@ AisDataMap container;
 ```
 
 The [**AisExperimentInfo**](#class-definition-aisexperimentinfo) class serves two purposes: to pass the necessary info to
-[**AisSquidstat**](#class-definition-aissquidstat)::startExperiment() and to give the user access to the experimental data, through the
+startExperiment() and to give the user access to the experimental data, through the
 **AisDataMap** “container” member. AisDataMap is a typedef for QMap<QString, [**AisDataStore**](#class-definition-aisdatastore)>. For more
-information, see the documentation for [**AisSquidstat**](#class-definition-aissquidstat)::startExperiment() and for the [**AisDataStore**](#class-definition-aisdatastore)
+information, see the documentation for startExperiment() and for the [**AisDataStore**](#class-definition-aisdatastore)
 class.
 
 Each [**AisExperimentInfo**](#class-definition-aisexperimentinfo) object also stores a QUuid object (which holds an UUID) associated with a
@@ -621,15 +576,18 @@ object inside a custom class, then you will need to either include its construct
 initialization list or use a pointer as the member instead.
 
 
-## Class Definition: AisManualExperimentInfo
+## Class: AisManualExperimentInfo
 
 Defined in **AisManualExperimentInfo.h**.
 
 Public member functions
 ```c++
 
-AisManualExperimentInfo(AisDeviceSetting* deviceSettings, AisSquidstatNotifier* notifier);
-void setManualExperimentinfo(double samplingInterval = 1, bool isCellOn = false, int indexOfCurrentRange = 0,bool isGalvanostaticMode = false,double CurrentOrVoltage = 0 );
+AisManualExperimentInfo(AisDeviceSetting* deviceSettings,
+    AisSquidstatNotifier* notifier);
+void setManualExperimentinfo(double samplingInterval = 1,
+    bool isCellOn = false, int indexOfCurrentRange = 0,
+    bool isGalvanostaticMode = false,double CurrentOrVoltage = 0 );
 double getSamplingInterval() const;
 bool getGalvanostaticMode() const;
 double getCurrentOrVoltage() const;
@@ -644,7 +602,8 @@ The [**AisManualExperimentInfo**](#class-definition-aismanualexperimentinfo) is 
 #### AisManualExperimentInfo
 
 ```c++
-AisManualExperimentInfo(AisDeviceSetting* deviceSettings, AisSquidstatNotifier* notifier);
+AisManualExperimentInfo(AisDeviceSetting* deviceSettings,
+    AisSquidstatNotifier* notifier);
 ```
 
 | Arguments  | Returns  |
@@ -662,7 +621,9 @@ manual experiment.
 #### setManualExperimentinfo
 
 ```c++
-void setManualExperimentinfo(double samplingInterval = 1, bool isCellOn = false, int indexOfCurrentRange = 0,bool isGalvanostaticMode = false,double CurrentOrVoltage = 0 );
+void setManualExperimentinfo(double samplingInterval = 1,
+    bool isCellOn = false, int indexOfCurrentRange = 0,
+    bool isGalvanostaticMode = false,double CurrentOrVoltage = 0 );
 ```
 
 | Arguments  | Returns  |
@@ -675,7 +636,7 @@ object, used to specify the instrument name and Channel number. And a pointer to
 
 
 
-## Class Definition: AisDataStore
+## Class: AisDataStore
 
 Defined in **AisDataStore.h**.
 
@@ -720,10 +681,14 @@ For example:
 
 ```c++
 void SquidstatAppHandler::readDCExperimentData(QUuid id) {
-    qreal time = mExperimentInfo->container[DCDATA_ELAPSED_TIME_S].lastDataPoint();
-    qreal WE = mExperimentInfo->container[DCDATA_WORKING_ELECTRODE].lastDataPoint();
-    qreal current = mExperimentInfo->container[DCDATA_CURRENT].lastDataPoint();
-    QString ExperimentSubstepName = mExperimentInfo->container[CURRENT_NODE_NAME].lastStringData();
+    qreal time = mExperimentInfo->container[DCDATA_ELAPSED_TIME_S]
+        .lastDataPoint();
+    qreal WE = mExperimentInfo->container[DCDATA_WORKING_ELECTRODE]
+        .lastDataPoint();
+    qreal current = mExperimentInfo->container[DCDATA_CURRENT]
+        .lastDataPoint();
+    QString ExperimentSubstepName = mExperimentInfo
+        ->container[CURRENT_NODE_NAME].lastStringData();
     QString text = ExperimentSubstepName +": ";
     text += QString::number(time) + "(s), ";
     text += QString::number(WE) + "(V), ";
@@ -782,7 +747,7 @@ These functions are provided for convenience and do as they say on the tin.
 * int numberOfDataPoints() returns the length of the data list.
 * void removeAllDataPoints() clears all data stored in the list.
 
-## Class definition: AisDeviceInfo
+## Class: AisDeviceInfo
 
 Defined in **AisDeviceInfo.h**.
 
@@ -811,7 +776,7 @@ Note that no default constructor exists for [**AisDeviceInfo**](#class-definitio
 object inside a custom class, then you will need to either include its constructor in an
 initialization list or use a pointer as the member instead.
 
-## Class Definition: AisChannelInfo
+## Class: AisChannelInfo
 
 Defined in **AisChannelInfo.h**.
 
@@ -839,9 +804,12 @@ be implemented.
 
 ## Example Project: Single Threaded Manual Experiment
 
-This project's full source code can be found in the ManualExperimentDemo folder. We suggest using Qt
+This project's full source code can be found in the ManualExperimentDemo folder. For Mac and Linux, we suggest using Qt
 Creator to build and launch the application using the instructions in the .pro file in the directory
-of the source code. Alternatively, qmake can be called directly on the .pro file. Before running the
+of the source code. Alternatively, qmake can be called directly on the .pro file. For Windows, a
+Visual Studio solution is provided.
+
+ Before running the
 executable, ensure the `#define` constants in **SquidStateHandler.cpp** have been given absolute
 paths to your appropriate documents folder (where custom experiments are kept in .json form), and
 where the dynamic libraries for the builder elements reside. Lastly, create a folder with the name
