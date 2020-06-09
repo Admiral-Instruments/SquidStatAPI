@@ -194,15 +194,26 @@ AisStatus::FLAG getCustomExperiments(QStringList& customExperiments);
 AisStatus::FLAG getDeviceInformation(AisDeviceInfo* const);
 AisStatus::FLAG getChannelInformation(AisChannelInfo* const);
 AisStatus::FLAG setIRDropCompensation(AisDeviceSetting* const,
- double UnCompenstatedResistance, double CompensatationLevel);
+    double UnCompenstatedResistance, double CompensatationLevel);
 AisStatus::FLAG getIRDropCompensation(AisDeviceSetting* const,
-double &UnCompenstatedResistance, double &CompensatationLevel);
+    double &UnCompenstatedResistance, double &CompensatationLevel);
 AisStatus::FLAG setStabilityRange(AisDeviceSetting* const, QString rangeName);
 AisStatus::FLAG getStabilityRangeList(AisDeviceSetting* const, QStringList&);
 AisStatus::FLAG getCurrentStabilityRange(AisDeviceSetting* const,
-QString tRangeRange);
+    QString tRangeRange);
 AisStatus::FLAG startExperiment(AisExperimentInfo* experiment);
 AisStatus::FLAG stopExperiment(const QUuid id);
+AisStatus::FLAG pauseExperiment(const QUuid id);
+AisStatus::FLAG resumeExperiment(const QUuid id);
+AisStatus::FLAG startManualExperimentM(AisManualExperimentInfo* experiment);
+ AisStatus::FLAG stopManualExperimentM(const QUuid id);
+AisStatus::FLAG setSamplingIntervalM(const QUuid id, double seconds_S);
+AisStatus::FLAG setGalvanostaticModeM(const QUuid id, double current_mA);
+AisStatus::FLAG setPotentiostaticModeM(const QUuid id, double Voltage_V);
+AisStatus::FLAG setCellOffM(const QUuid id, double cellPosition);
+AisStatus::FLAG getCurrentRangeListM (AisDeviceSetting* const,
+    QStringList &currentRageList);
+AisStatus::FLAG setCurrentRangeM(const QUuid id, int indexOfCurrentRange);
 AisStatus::FLAG setAppDocumentDir(QString documentDir);
 AisStatus::FLAG registerGlobalNotifier(AisSquidstatNotifier* const);
 void closeApplication();
